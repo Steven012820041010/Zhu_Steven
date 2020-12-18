@@ -20,7 +20,7 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         int angle = Greenfoot.getRandomNumber(360);
-        Tank tank = new Tank(angle);
+        Tank tank = new Tank();
         
         Label score = new Label(0,20);
         addObject(score,30,30);

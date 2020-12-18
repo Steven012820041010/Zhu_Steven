@@ -15,36 +15,34 @@ public class Bullet extends Actor
     
     private boolean remove;
     private GreenfootImage image;
-    private int angle;
-    private int cooldown;
+    
+    private int MAX_BOUNCES = 4;
+    private int bounces = 0;
     
     public Bullet ()
-    {
-        
+    {        
     }
-    public Bullet(int angle)
-    {
-       
-        this.angle = angle;
-    }
-    
+
     public void act() 
     {
         move(20);
+        
         bouncingOffWall();
         removeBullet();
     }
+    
     public void bouncingOffWall()
     {
         if(isAtEdge())
         {
             turn(Greenfoot.getRandomNumber(90));
+            bounces++;
         }
     }
     
     public void removeBullet()
     {
-        if(Tank.remove)
+        if(bounces >= MAX_BOUNCES)
         {
             getWorld().removeObject(this);
         }

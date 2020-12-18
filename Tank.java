@@ -8,11 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Tank extends Actor
 {
+    private final int MAX_COOLDOWN = 60;
+    private final int MAX_BULLETS = 8;
+
     private GreenfootImage image;
     GreenfootSound shootingSound = new GreenfootSound ("GunShotSound.mp3");
-    public int angle;
-    private final int MAX_COOLDOWN = 60;
-    private int tolerance;
+
     private int cooldown;
     private int numBullet;
     private boolean needToRefill = false;
@@ -21,58 +22,38 @@ public class Tank extends Actor
      * Act - do whatever the TankBattle wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public Tank(int direction)
+    public Tank()
     {
-        setRotation(direction);
+        int angle = Greenfoot.getRandomNumber(360);
+        setRotation(angle);
+
         image = new GreenfootImage("TankModel.png");
         setImage(image);
-        tolerance = 7;
-        this.angle = direction;
-        cooldown = 1;
+
+        cooldown = 0;
         numBullet = 0;
-        
     }
-    
-    
+
     public void act() 
     {
-        // Add your action code here.
-        if (cooldown > 0)
+        moveTank();
+        if (Greenfoot.isKeyDown("space") && canShoot())
         {
-            cooldown--;
-        }else{
-            remove = true;
+            shoot();
         }
-        
-        movingTank();
-        if (Greenfoot.isKeyDown("space") && numBullet<tolerance && cooldown == 0 && needToRefill == false)
-        {
-            shoot(angle);
-            
-        }
-        else
-        {
-            if (numBullet==0)
-            {
-                needToRefill=false;
-            }
-            
-            if (needToRefill)
-            {
-                numBullet--;
-            }
-                
-        }     
-      
-     
-        
+
     }
-    
+
+    private boolean canShoot()
+    {
+        return numBullet<MAX_BULLETS && cooldown == 0 && needToRefill == false;
+    }
+
     //Using "up" and "down" to move forward and backward,
     //      "left" and "right" to control the direction
-    public void movingTank()
+    public void moveTank()
     {
-        
+
         if (Greenfoot.isKeyDown("up"))
         {
             move(8);
@@ -84,35 +65,41 @@ public class Tank extends Actor
         if (Greenfoot.isKeyDown("left"))
         {
             turn(-30);
-            angle-=30;
+            setRotation(getRotation()-30);
         }
         if (Greenfoot.isKeyDown("right"))
         {
             turn(30);
-            angle+=30;
+            setRotation(getRotation()+30);
         }
-        
+
     }
-   
-    
-    //shoot the bullet until "space" is pressed
-    public void shoot(int degree)
+
+    //shoot the bullet if "space" is pressed
+    public void shoot()
     {
-  
-        shootingSound.play();
-        Bullet bul = new Bullet();
-        MyWorld world = (MyWorld)getWorld();
-        world.addObject(bul,getX(),getY());
-        bul.setRotation(degree);
+        // Prevent rapid shooting.
+        if (cooldown > 0)
+        {
+            cooldown--;
+            return;
+        }
+
         numBullet++;
-        if (numBullet>=tolerance)
+        if (numBullet >= MAX_BULLETS)
         {
             cooldown = MAX_COOLDOWN;
-            needToRefill = true;
-            remove = false;
+            //needToRefill = true;
+            //remove = false;
         }
+
+        shootingSound.play();
+
+        Bullet bul = new Bullet();
+        bul.setRotation(getRotation());
+
+        MyWorld world = (MyWorld)getWorld();
+        world.addObject(bul,getX(),getY());
+
     }
-    
-    
-    
 }
