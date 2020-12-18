@@ -1,13 +1,15 @@
 #BlueJ class context
 comment0.target=Tank
 comment0.text=\n\ Write\ a\ description\ of\ class\ TankBattle\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=direction
-comment1.target=Tank(int)
+comment1.params=
+comment1.target=Tank()
 comment1.text=\n\ Act\ -\ do\ whatever\ the\ TankBattle\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
-comment3.target=void\ movingTank()
-comment4.params=degree
-comment4.target=void\ shoot(int)
-numComments=5
+comment3.target=boolean\ canShoot()
+comment4.params=
+comment4.target=void\ moveTank()
+comment5.params=
+comment5.target=void\ shoot()
+numComments=6
