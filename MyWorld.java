@@ -13,13 +13,16 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    Label scoreLabel;
-    
+    Label scoreLabel1;
+    Label scoreLabel2;
+    Tank tank1;
+    Tank tank2;
     BackArrow arrow;
     Wall[] wall;
     public int button;
     
-    public int score = 0;
+    public int score1 = 0;
+    public int score2 = 0;
     
     public BulletSymbol[] symbol = new BulletSymbol[8];
     private int indexImage = 0;
@@ -29,10 +32,12 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 800, 1);
         
-        Tank tank1 = new Tank();
+        tank1 = new Tank(true);
+        tank2 = new Tank(false);
         //Tank tank2 = new Tank(false);
         Coin coin = new Coin(); 
-        scoreLabel = new Label(0,30);
+        scoreLabel1 = new Label(0,30);
+        scoreLabel2 = new Label(0,30);
         arrow = new BackArrow();
         wall = new Wall[10];
        
@@ -41,10 +46,11 @@ public class MyWorld extends World
         setBulletFigure();
         addBulletFigure();
         
-        addObject(scoreLabel,30,30);
+        addObject(scoreLabel1,30,30);
+        addObject(scoreLabel2,1100,30);
         addObject(coin,Greenfoot.getRandomNumber(1000),Greenfoot.getRandomNumber(800));
         addObject(tank1,100,100);
-        //addObject(tank2,1000,100);
+        addObject(tank2,1000,100);
         addObject(arrow,1160,30);
        // addObject(wall,Greenfoot.getRandomNumber(1000),Greenfoot.getRandomNumber(800));
         
@@ -77,10 +83,16 @@ public class MyWorld extends World
         
     }
     
-    public void increaseScore()
+    public void firstTankIncreaseScore()
     {
-        score+=Greenfoot.getRandomNumber(2)+1;
-        scoreLabel.setValue(score);
+        score1 += Greenfoot.getRandomNumber(2)+1;
+        scoreLabel1.setValue(score1);
+    }
+    
+    public void secondTankIncreaseScore()
+    {
+        score2 += Greenfoot.getRandomNumber(2)+1;
+        scoreLabel2.setValue(score2);
     }
     
     public void createCoin()

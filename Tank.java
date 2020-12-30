@@ -13,7 +13,7 @@ public class Tank extends Actor
 
     private GreenfootImage image;
     public MyWorld world;
-
+    public boolean player;
     private int cooldown;
     private int numBullet;
     private int index = 7;
@@ -23,23 +23,33 @@ public class Tank extends Actor
      * Act - do whatever the TankBattle wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public Tank()
+    public Tank(boolean player)
     {
         int angle = Greenfoot.getRandomNumber(360);
         setRotation(angle);
-
-        image = new GreenfootImage("TankModel.png");
-        setImage(image);
+        this.player = player;
+        setTankImage();
 
         cooldown = 0;
         numBullet = 0;
+    }
+    public void setTankImage()
+    {
+        if (player)
+        {
+           image = new GreenfootImage("TankModel.png");
+           setImage(image); 
+        }else{
+           image = new GreenfootImage("Tank2Model.png");
+           setImage(image); 
+        }
     }
 
     public void act() 
     {
         coolDown();
         moveTank();
-        
+        touchCoin();
         if (Greenfoot.isKeyDown("space") && canShoot())
         {
             shoot();
@@ -53,7 +63,7 @@ public class Tank extends Actor
     {
         return numBullet<MAX_BULLETS && cooldown == 0 && needToWait == false;
     }
-
+    //wohaoshuai
     //Using "up" and "down" to move forward and backward,
     //      "left" and "right" to control the direction
     public void needToRefill()
@@ -103,32 +113,75 @@ public class Tank extends Actor
        }
         
     }
+    public void touchCoin()
+    {
+        if (isTouching(Coin.class) && player)
+        {
+            removeTouching(Coin.class);
+            world = (MyWorld)getWorld();
+            world.firstTankIncreaseScore();
+            world.createCoin();
+            
+        }
+        else if (isTouching(Coin.class) && !player)
+        {
+            removeTouching(Coin.class);
+            world = (MyWorld)getWorld();
+            world.secondTankIncreaseScore();
+            world.createCoin();
+        }
+    }
     public void moveTank()
     {
- 
-        if (Greenfoot.isKeyDown("up"))
-        {
-            move(20);
-            moveForwardTouchWall();
-           
-        }
-        else if (Greenfoot.isKeyDown("down"))
-        {
-            move(-20);
-            moveBackwardTouchWall();
-        }
-        if (Greenfoot.isKeyDown("left"))
-        {
-            turn(-20);
-            
-        }
-        if (Greenfoot.isKeyDown("right"))
-        {
-            turn(20);
-            
+        if (player){
+            if (Greenfoot.isKeyDown("up"))
+            {
+                move(20);
+                moveForwardTouchWall();
+               
+            }
+            else if (Greenfoot.isKeyDown("down"))
+            {
+                move(-20);
+                moveBackwardTouchWall();
+            }
+            if (Greenfoot.isKeyDown("left"))
+            {
+                turn(-20);
+                
+            }
+            if (Greenfoot.isKeyDown("right"))
+            {
+                turn(20);
+                
+            }
+        }else{
+            if (Greenfoot.isKeyDown("w"))
+            {
+                move(20);
+                moveForwardTouchWall();
+               
+            }
+            else if (Greenfoot.isKeyDown("s"))
+            {
+                move(-20);
+                moveBackwardTouchWall();
+            }
+            if (Greenfoot.isKeyDown("a"))
+            {
+                turn(-20);
+                
+            }
+            if (Greenfoot.isKeyDown("d"))
+            {
+                turn(20);
+                
+            }
         }
 
     }
+    
+    
 
     //shoot the bullet if "space" is pressed
     public void shoot()
