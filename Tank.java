@@ -17,7 +17,7 @@ public class Tank extends Actor
     private int cooldown;
     private int numBullet;
     private int index = 7;
-    private boolean needToRefill = false;
+    private boolean needToWait = false;
     
     /**
      * Act - do whatever the TankBattle wants to do. This method is called whenever
@@ -44,27 +44,27 @@ public class Tank extends Actor
         {
             shoot();
         }else{
-            needToWait();
+            needToRefill();
         }
 
     }
 
     private boolean canShoot()
     {
-        return numBullet<MAX_BULLETS && cooldown == 0 && needToRefill == false;
+        return numBullet<MAX_BULLETS && cooldown == 0 && needToWait == false;
     }
 
     //Using "up" and "down" to move forward and backward,
     //      "left" and "right" to control the direction
-    public void needToWait()
+    public void needToRefill()
     {
         if (numBullet==0){
-            needToRefill = false;
+            needToWait = false;
             world = (MyWorld)getWorld();
             world.addBulletFigure();
             index = 7;
         }
-        if (needToRefill){
+        if (needToWait){
            numBullet--; 
         }
         
@@ -105,8 +105,7 @@ public class Tank extends Actor
     }
     public void moveTank()
     {
-         
-        
+ 
         if (Greenfoot.isKeyDown("up"))
         {
             move(20);
@@ -135,20 +134,20 @@ public class Tank extends Actor
     public void shoot()
     {
         numBullet++;
+        Bullet bul = new Bullet();
+        bul.setRotation(getRotation());
+        world = (MyWorld)getWorld();
+        
+        world.addObject(bul,getX(),getY());
         if (numBullet >= MAX_BULLETS)
         {
             cooldown = MAX_COOLDOWN;
-            needToRefill = true;
+            needToWait = true;
            
         }
 
 
-        Bullet bul = new Bullet();
-        bul.setRotation(getRotation());
-
-        world = (MyWorld)getWorld();
         
-        world.addObject(bul,getX(),getY());
         getWorld().removeObject(world.symbol[index]);
         index--;
 
