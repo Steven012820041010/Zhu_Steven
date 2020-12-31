@@ -15,8 +15,8 @@ public class MyWorld extends World
      */
     Label scoreLabel1;
     Label scoreLabel2;
-    Tank tank1;
-    Tank tank2;
+    Tank tank1 = new Tank(true);
+    Tank tank2 = new Tank(false);
     BackArrow arrow;
     Wall[] wall;
     public int button;
@@ -32,10 +32,10 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 800, 1);
+        setBackground(new GreenfootImage("yellow background.jpg"));
         
-        tank1 = new Tank(true);
-        tank2 = new Tank(false);
-        //Tank tank2 = new Tank(false);
+        
+        
         Coin coin = new Coin(); 
         scoreLabel1 = new Label(0,30);
         scoreLabel2 = new Label(0,30);
@@ -106,6 +106,14 @@ public class MyWorld extends World
         int X = Greenfoot.getRandomNumber(1000);
         int Y = Greenfoot.getRandomNumber(800);
         addObject(c,X,Y);
+    }
+    
+    public void resetTank(boolean player)
+    {
+        Tank first = new Tank(true);
+        Tank second = new Tank(false);
+        addObject(first,Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
+        addObject(first,700 + Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
     }
     
     public void setBulletFigure()

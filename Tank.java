@@ -18,6 +18,7 @@ public class Tank extends Actor
     private int numBullet;
     private int index = 7;
     private boolean needToWait = false;
+    SimpleTimer timer = new SimpleTimer();
     //private int[] bulFigure = new int[8];
     
     /**
@@ -52,6 +53,7 @@ public class Tank extends Actor
         coolDown();
         moveTank();
         touchCoin();
+       
         if (Greenfoot.isKeyDown("space") && canShoot() && player)
         {
             shoot();
@@ -104,14 +106,14 @@ public class Tank extends Actor
     public void moveForwardTouchWall()
     {
         
-            world = (MyWorld)getWorld();
-            for (Wall wal : world.wall)
+        world = (MyWorld)getWorld();
+        for (Wall wal : world.wall)
+        {
+            if (Math.abs(wal.getX()-this.getX())<40 && Math.abs(wal.getY()-this.getY())<60)
             {
-                if (Math.abs(wal.getX()-this.getX())<40 && Math.abs(wal.getY()-this.getY())<60)
-                {
-                    move(-20);
-                }
+                move(-20);
             }
+        }
         
     }
     
@@ -145,6 +147,11 @@ public class Tank extends Actor
             world.createCoin();
         }
     }
+    
+    public void touchBullet()
+    {
+        
+    }
     public void moveTank()
     {
         if (player){
@@ -161,12 +168,12 @@ public class Tank extends Actor
             }
             if (Greenfoot.isKeyDown("left"))
             {
-                turn(-20);
+                turn(-10);
                 
             }
             if (Greenfoot.isKeyDown("right"))
             {
-                turn(20);
+                turn(10);
                 
             }
         }else{
@@ -213,7 +220,8 @@ public class Tank extends Actor
             
         bul.setRotation(getRotation());
         world = (MyWorld)getWorld();
-        
+        //int X = (int)(Math.abs(30 * Math.cos(getRotation())));
+        //  int Y = (int)(Math.abs(30 * Math.sin(getRotation())));
         world.addObject(bul,getX(),getY());
         if (numBullet >= MAX_BULLETS)
         {
@@ -235,6 +243,8 @@ public class Tank extends Actor
        
 
     }
+    
+    
     
     
     

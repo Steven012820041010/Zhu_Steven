@@ -8,12 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TitlePage extends World
 {
-
+    
     /**
      * Constructor for objects of class Introduction.
      * 
      */
     GreenfootImage tankImage = new GreenfootImage("tankBattle.png");
+    GreenfootSound backgroundMusic = new GreenfootSound("Patakas World.wav");
+    GreenfootImage[] sound = new GreenfootImage [2];
+    GreenfootImage currSoundImage;
     Label titleTank;
     Label titleBattle;
     Label[] startButton;
@@ -24,9 +27,12 @@ public class TitlePage extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1); 
         setBackground(new GreenfootImage("tank background.png"));
-        
         getBackground().drawImage(tankImage,350,60);
-        
+        initMusicFigure();
+        currSoundImage = sound[0];
+        getBackground().drawImage(currSoundImage,900,30);
+        backgroundMusic.setVolume(40);
+        backgroundMusic.playLoop();
         
         //Init
         titleTank = new Label ("TANK" , 110);
@@ -54,6 +60,26 @@ public class TitlePage extends World
         
        
     }
+    public void clickMusicButton()
+    {
+        MouseInfo mouse = Greenfoot.getMouseInfo();
+        if (Greenfoot.mouseClicked(this))
+        {
+            
+            if (currSoundImage == sound[0])
+            {
+                currSoundImage = sound[1];
+                backgroundMusic.stop();
+            }
+            else if (currSoundImage == sound[1])
+            {
+                currSoundImage= sound[0];
+                backgroundMusic.playLoop();
+            }
+            
+        }
+        getBackground().drawImage(currSoundImage,910,23);
+    }
     
     public void setAnimationOfInstruction(Label[] label,int fontSize,String instruction)
     {
@@ -69,15 +95,19 @@ public class TitlePage extends World
     {
         animateInstruction();
         playGameOrReadIntro();
-        
+        clickMusicButton();
     }
-    
+    public void initMusicFigure()
+    {
+        sound[0] = new GreenfootImage("music on.png");
+        sound[1] = new GreenfootImage("music off.png");
+    }
     public void playGameOrReadIntro()
     {
-         if (Greenfoot.isKeyDown("s"))
+        if (Greenfoot.isKeyDown("s"))
         {
-            MyWorld gameWorld = new MyWorld();
-            Greenfoot.setWorld(gameWorld);
+           MyWorld gameWorld = new MyWorld();
+           Greenfoot.setWorld(gameWorld);
         }
         
         if (Greenfoot.isKeyDown("i"))
