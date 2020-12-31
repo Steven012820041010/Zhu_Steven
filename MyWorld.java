@@ -24,7 +24,8 @@ public class MyWorld extends World
     public int score1 = 0;
     public int score2 = 0;
     
-    public BulletSymbol[] symbol = new BulletSymbol[8];
+    public BulletSymbol[] bulFigure1 = new BulletSymbol[8];
+    public BulletSymbol[] bulFigure2 = new BulletSymbol[8];
     private int indexImage = 0;
     
     public MyWorld()
@@ -43,8 +44,11 @@ public class MyWorld extends World
        
         
         setTenRandomWall();
+        
         setBulletFigure();
-        addBulletFigure();
+        addBulletFigure(20,750,bulFigure1);
+        addBulletFigure(1050,750,bulFigure2);
+      
         
         addObject(scoreLabel1,30,30);
         addObject(scoreLabel2,1100,30);
@@ -106,23 +110,26 @@ public class MyWorld extends World
     
     public void setBulletFigure()
     {
-        
+        indexImage = 0;
         for (int i=0; i<8; i++)
         {
-            symbol[indexImage] = new BulletSymbol();
+            bulFigure1[indexImage] = new BulletSymbol();
+            bulFigure2[indexImage] = new BulletSymbol();
             indexImage++;
+           
         } 
+        
        
     }
-    public void addBulletFigure()
+    
+    
+    public void addBulletFigure(int X, int Y, BulletSymbol[] arr)
     {
-        int X = 20;
-        int Y = 750;
         indexImage = 0;
         
         for (int i=0; i<8; i++)
         {
-            addObject(symbol[indexImage],X,Y);
+            addObject(arr[indexImage],X,Y);
             indexImage++;
             X+=14;
             

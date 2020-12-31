@@ -23,7 +23,7 @@ public class Bullet extends Actor
     public Bullet ()
     {
         shootingSound.setVolume(40);
-        shootingSound.play();
+        //shootingSound.play();
         bounce = 0;
     }
     

@@ -18,6 +18,7 @@ public class Tank extends Actor
     private int numBullet;
     private int index = 7;
     private boolean needToWait = false;
+    //private int[] bulFigure = new int[8];
     
     /**
      * Act - do whatever the TankBattle wants to do. This method is called whenever
@@ -25,6 +26,7 @@ public class Tank extends Actor
      */
     public Tank(boolean player)
     {
+        world = (MyWorld)getWorld();
         int angle = Greenfoot.getRandomNumber(360);
         setRotation(angle);
         this.player = player;
@@ -50,10 +52,15 @@ public class Tank extends Actor
         coolDown();
         moveTank();
         touchCoin();
-        if (Greenfoot.isKeyDown("space") && canShoot())
+        if (Greenfoot.isKeyDown("space") && canShoot() && player)
         {
             shoot();
-        }else{
+        }
+        else if((Greenfoot.isKeyDown("j") && canShoot() && !player))
+        {
+            shoot();
+        }
+        else{
             needToRefill();
         }
 
@@ -71,7 +78,14 @@ public class Tank extends Actor
         if (numBullet==0){
             needToWait = false;
             world = (MyWorld)getWorld();
-            world.addBulletFigure();
+            if (player)
+            {
+                world.addBulletFigure(20,750,world.bulFigure1);
+            }
+            else
+            {
+                world.addBulletFigure(1050,750,world.bulFigure2);
+            }
             index = 7;
         }
         if (needToWait){
@@ -188,6 +202,15 @@ public class Tank extends Actor
     {
         numBullet++;
         Bullet bul = new Bullet();
+        if (player)
+        {
+            bul.setImage(new GreenfootImage("Player1Bullet.png"));
+        }
+        else
+        {
+            bul.setImage(new GreenfootImage("Player2Bullet.png"));
+        }
+            
         bul.setRotation(getRotation());
         world = (MyWorld)getWorld();
         
@@ -198,11 +221,18 @@ public class Tank extends Actor
             needToWait = true;
            
         }
-
-
         
-        getWorld().removeObject(world.symbol[index]);
-        index--;
+        
+        if (player){
+            getWorld().removeObject(world.bulFigure1[index]);
+            index--;
+        }
+        else
+        {
+            getWorld().removeObject(world.bulFigure2[world.bulFigure2.length-index-1]);
+            index--;
+        }
+       
 
     }
     
