@@ -19,6 +19,7 @@ public class Tank extends Actor
     private int index = 7;
     private boolean needToWait = false;
     SimpleTimer timer = new SimpleTimer();
+    int bulletCounter;
     //private int[] bulFigure = new int[8];
     
     /**
@@ -35,6 +36,8 @@ public class Tank extends Actor
 
         cooldown = 0;
         numBullet = 0;
+        
+        bulletCounter = 0;
     }
     public void setTankImage()
     {
@@ -147,11 +150,7 @@ public class Tank extends Actor
             world.createCoin();
         }
     }
-    
-    public void touchBullet()
-    {
-        
-    }
+   
     public void moveTank()
     {
         if (player){
@@ -190,12 +189,12 @@ public class Tank extends Actor
             }
             if (Greenfoot.isKeyDown("a"))
             {
-                turn(-20);
+                turn(-10);
                 
             }
             if (Greenfoot.isKeyDown("d"))
             {
-                turn(20);
+                turn(10);
                 
             }
         }
@@ -208,21 +207,23 @@ public class Tank extends Actor
     public void shoot()
     {
         numBullet++;
-        Bullet bul = new Bullet();
+        world = (MyWorld)getWorld();
+        Bullet bullet = new Bullet();
+        world.bul.add(bullet);
         if (player)
         {
-            bul.setImage(new GreenfootImage("Player1Bullet.png"));
+            bullet.setImage(new GreenfootImage("Player1Bullet.png"));
         }
         else
         {
-            bul.setImage(new GreenfootImage("Player2Bullet.png"));
+            bullet.setImage(new GreenfootImage("Player2Bullet.png"));
         }
             
-        bul.setRotation(getRotation());
-        world = (MyWorld)getWorld();
+        bullet.setRotation(getRotation());
+        
         //int X = (int)(Math.abs(30 * Math.cos(getRotation())));
         //  int Y = (int)(Math.abs(30 * Math.sin(getRotation())));
-        world.addObject(bul,getX(),getY());
+        world.addObject(bullet,getX(),getY());
         if (numBullet >= MAX_BULLETS)
         {
             cooldown = MAX_COOLDOWN;
@@ -240,7 +241,7 @@ public class Tank extends Actor
             getWorld().removeObject(world.bulFigure2[world.bulFigure2.length-index-1]);
             index--;
         }
-       
+       bulletCounter++;
 
     }
     

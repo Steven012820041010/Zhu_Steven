@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.ArrayList.*;
+import java.util.*;
 /**
  * Write a description of class MyWorld here.
  * 
@@ -19,6 +20,7 @@ public class MyWorld extends World
     Tank tank2 = new Tank(false);
     BackArrow arrow;
     Wall[] wall;
+    List<Bullet> bul;
     public int button;
     
     public int score1 = 0;
@@ -41,6 +43,7 @@ public class MyWorld extends World
         scoreLabel2 = new Label(0,30);
         arrow = new BackArrow();
         wall = new Wall[10];
+        bul = new ArrayList<Bullet>();
        
         
         setTenRandomWall();
@@ -81,10 +84,35 @@ public class MyWorld extends World
         {
             int X = Greenfoot.getRandomNumber(1000);
             int Y = Greenfoot.getRandomNumber(800);
+            if (
             addObject(wall[i],X,Y);
             
         }
         
+    }
+    
+    public void removeAllWall()
+    {
+        for (int i=0; i<wall.length; i++)
+        {
+            removeObject(wall[i]);
+            
+        }
+    }
+    
+    public void removeAllTank()
+    {
+        removeObject(tank1);
+        removeObject(tank2);
+    }
+    
+    public void removeAllBullet()
+    {
+        for (int i=0; i<bul.size(); i++)
+        {
+            removeObject(bul.get(i));
+            
+        }
     }
     
     public void firstTankIncreaseScore()
@@ -108,12 +136,17 @@ public class MyWorld extends World
         addObject(c,X,Y);
     }
     
-    public void resetTank(boolean player)
+    public void respawn()
     {
-        Tank first = new Tank(true);
-        Tank second = new Tank(false);
-        addObject(first,Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
-        addObject(first,700 + Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
+        removeAllTank();
+        removeAllWall();
+        removeAllBullet();
+        tank1 = new Tank(true);
+        tank2 = new Tank(false);
+        addObject(tank1,Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
+        addObject(tank2,700 + Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
+        
+        setTenRandomWall();
     }
     
     public void setBulletFigure()

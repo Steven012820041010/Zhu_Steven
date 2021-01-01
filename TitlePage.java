@@ -32,7 +32,7 @@ public class TitlePage extends World
         currSoundImage = sound[0];
         getBackground().drawImage(currSoundImage,900,30);
         backgroundMusic.setVolume(40);
-        backgroundMusic.playLoop();
+        //backgroundMusic.playLoop();
         
         //Init
         titleTank = new Label ("TANK" , 110);

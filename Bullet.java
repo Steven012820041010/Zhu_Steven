@@ -70,10 +70,12 @@ public class Bullet extends Actor
         {
             world.removeObject(world.tank1);
             world.removeObject(this);
-            System.out.println(world.tank1);
             world.secondTankIncreaseScore();
             world.tank1 = null;
+            world.respawn();
             return;
+            
+            
                
             
             
@@ -84,8 +86,9 @@ public class Bullet extends Actor
             world.removeObject(this); 
             world.firstTankIncreaseScore();
             world.tank2 = null;
-             
-             return;
+            world.respawn();
+
+            return;
         }
         
     }
