@@ -34,7 +34,7 @@ public class Bullet extends Actor
   
     public void act() 
     {
-        move(30);
+        move(50);
         bounce();
         collisionWithTank();
         removeBullet();
@@ -42,15 +42,100 @@ public class Bullet extends Actor
         
     }
     
+    public void turnAngleAtEdge()
+    {
+        //Top-Left
+        if (getRotation()>180 && getRotation()<270 && getY() <= 5)
+        {
+            setRotation(180-(getRotation()-180));
+        }
+        if (getRotation()>180 && getRotation()<270 && getX() <= 5)
+        {
+            setRotation(270+(270-getRotation()));
+        }
+        
+        //Bottom-Left
+        if (getRotation()>90 && getRotation()<180 && getY() >= 795) 
+        {
+            setRotation(180+(getRotation()-90));
+        }
+        if (getRotation()>90 && getRotation()<180 && getX() <= 5) 
+        {
+            setRotation(90-(getRotation()-90));
+        }
+        
+        //Bottom-Right
+        if (getRotation()>0 && getRotation()<90 && getY() >= 795)
+        {
+            setRotation(360-getRotation());
+        }
+        if (getRotation()>0 && getRotation()<90 && getX() >= 1195)
+        {
+            setRotation(90+(90-getRotation()));
+        }
+        
+        //Top-Right
+        if (getRotation()>270 && getRotation()<360 && getY() <= 5)
+        {
+            setRotation(0+(360-getRotation()));
+        }
+        if (getRotation()>270 && getRotation()<360 && getX() >= 1195)
+        {
+            setRotation(270-(getRotation()-270));
+        }
+        
+    }
+    
+    public void turnAngleAtWall()
+    {
+       world = (MyWorld)getWorld();
+       for (Wall wal : world.wall)
+       {
+            if (Math.abs(wal.getX()-this.getX())<40 && Math.abs(wal.getY()-this.getY())<40)
+            {
+                //Top-Left
+                if (getRotation()>180 && getRotation()<270)
+                {
+                    setRotation(270+(270-getRotation()));
+                }
+            
+                //Bottom-Left
+                if (getRotation()>90 && getRotation()<180) 
+                {
+                    setRotation(90-(getRotation()-90));
+                }
+                
+                //Bottom-Right
+                if (getRotation()>0 && getRotation()<90)
+                {
+                    setRotation(90+(90-getRotation()));
+                }
+                
+                //Top-Right
+                if (getRotation()>270 && getRotation()<360)
+                {
+                    setRotation(270-(getRotation()-270));
+                }
+            }
+       }
+        
+        
+    }
     public void bounce()
     {
-        if(isAtEdge() || isTouching(Wall.class))
+        if(isAtEdge())
         {
             
-            turn(Greenfoot.getRandomNumber(10)+90);
+            turnAngleAtEdge();
             
             bounce++;
         }
+        if (isTouching(Wall.class))
+        {
+            turnAngleAtWall();
+               
+            bounce++;
+        }   
        
     }
     

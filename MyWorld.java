@@ -44,9 +44,11 @@ public class MyWorld extends World
         arrow = new BackArrow();
         wall = new Wall[10];
         bul = new ArrayList<Bullet>();
-       
+        Tank tank = new Tank(false);
+        //addObject(tank,550,400);
+        tank.setRotation(270);
         
-        setTenRandomWall();
+        
         
         setBulletFigure();
         addBulletFigure(20,750,bulFigure1);
@@ -59,6 +61,8 @@ public class MyWorld extends World
         addObject(tank1,100,100);
         addObject(tank2,1000,100);
         addObject(arrow,1160,30);
+        
+        setTenRandomWall();
        // addObject(wall,Greenfoot.getRandomNumber(1000),Greenfoot.getRandomNumber(800));
         
     }
@@ -84,7 +88,6 @@ public class MyWorld extends World
         {
             int X = Greenfoot.getRandomNumber(1000);
             int Y = Greenfoot.getRandomNumber(800);
-            if (
             addObject(wall[i],X,Y);
             
         }

@@ -114,7 +114,7 @@ public class Tank extends Actor
         {
             if (Math.abs(wal.getX()-this.getX())<40 && Math.abs(wal.getY()-this.getY())<60)
             {
-                move(-20);
+                move(-15);
             }
         }
         
@@ -127,7 +127,7 @@ public class Tank extends Actor
        {
            if (Math.abs(wal.getX()-this.getX())<40 && Math.abs(wal.getY()-this.getY())<40)
            {
-                move(20);
+                move(15);
            }
        }
         
@@ -156,13 +156,13 @@ public class Tank extends Actor
         if (player){
             if (Greenfoot.isKeyDown("up"))
             {
-                move(20);
+                move(15);
                 moveForwardTouchWall();
                
             }
             else if (Greenfoot.isKeyDown("down"))
             {
-                move(-20);
+                move(-15);
                 moveBackwardTouchWall();
             }
             if (Greenfoot.isKeyDown("left"))
@@ -209,6 +209,7 @@ public class Tank extends Actor
         numBullet++;
         world = (MyWorld)getWorld();
         Bullet bullet = new Bullet();
+        
         world.bul.add(bullet);
         if (player)
         {
@@ -221,8 +222,7 @@ public class Tank extends Actor
             
         bullet.setRotation(getRotation());
         
-        //int X = (int)(Math.abs(30 * Math.cos(getRotation())));
-        //  int Y = (int)(Math.abs(30 * Math.sin(getRotation())));
+       
         world.addObject(bullet,getX(),getY());
         if (numBullet >= MAX_BULLETS)
         {
@@ -241,7 +241,7 @@ public class Tank extends Actor
             getWorld().removeObject(world.bulFigure2[world.bulFigure2.length-index-1]);
             index--;
         }
-       bulletCounter++;
+        bulletCounter++;
 
     }
     
