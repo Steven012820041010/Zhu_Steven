@@ -178,13 +178,13 @@ public class Tank extends Actor
         }else{
             if (Greenfoot.isKeyDown("w"))
             {
-                move(20);
+                move(15);
                 moveForwardTouchWall();
                
             }
             else if (Greenfoot.isKeyDown("s"))
             {
-                move(-20);
+                move(-15);
                 moveBackwardTouchWall();
             }
             if (Greenfoot.isKeyDown("a"))

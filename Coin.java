@@ -24,12 +24,7 @@ public class Coin extends Actor
     public void act() 
     {
   
-    moveDelay++; // increment timer
-    if (moveDelay == 250) // if timer has reached limit
-    {
-        
-        moveDelay = 0; // reset timer
-    }
+    
     }
         
 }

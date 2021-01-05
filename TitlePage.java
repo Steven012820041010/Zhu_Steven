@@ -97,6 +97,8 @@ public class TitlePage extends World
         playGameOrReadIntro();
         clickMusicButton();
     }
+    
+    
     public void initMusicFigure()
     {
         sound[0] = new GreenfootImage("music on.png");

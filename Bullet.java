@@ -34,7 +34,7 @@ public class Bullet extends Actor
   
     public void act() 
     {
-        move(50);
+        move(40);
         bounce();
         collisionWithTank();
         removeBullet();
@@ -125,7 +125,6 @@ public class Bullet extends Actor
     {
         if(isAtEdge())
         {
-            
             turnAngleAtEdge();
             
             bounce++;
@@ -149,8 +148,7 @@ public class Bullet extends Actor
     
     public void collisionWithTank()
     {
-        world = (MyWorld)getWorld();
-        //System.out.println(world.tank1);
+        world = (MyWorld)getWorld(); 
         if (world.tank1 != null && intersects(world.tank1))
         {
             world.removeObject(world.tank1);
@@ -159,11 +157,7 @@ public class Bullet extends Actor
             world.tank1 = null;
             world.respawn();
             return;
-            
-            
-               
-            
-            
+
         }
         else if(world.tank2 != null && intersects(world.tank2))
         {
