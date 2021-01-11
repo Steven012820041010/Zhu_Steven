@@ -15,55 +15,33 @@ public class Introduction extends World
      */
     BackArrow arrow;
     Label back;
+    //Music soundFigure;
     
-    GreenfootSound backgroundMusic = new GreenfootSound("Patakas World.wav");
-    GreenfootImage[] sound = new GreenfootImage [2];
-    GreenfootImage currSoundImage;
+
     public Introduction()
-    {    
+    {     
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 668, 1); 
+        //soundFigure = new Music();
         arrow = new BackArrow();
+        
         arrow.setRotation(180);
         addObject(arrow,63,40);
         back = new Label("Back", 35);
         addObject(back,65,70);
-        
-        initMusicFigure();
-        currSoundImage = sound[0];
-        getBackground().drawImage(currSoundImage,910,23);
-        backgroundMusic.setVolume(40);
-        //backgroundMusic.playLoop();
-        
-        
-    }
-    public void clickMusicButton()
-    {
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if (Greenfoot.mouseClicked(this))
+        addObject(TitlePage.soundFigure,946,60);
+        Music music = new Music();
+        music.setSoundImage();
+        if (Music.allIndex.get(Music.allIndex.size()-1) == 1)
         {
-            
-            if (currSoundImage == sound[0])
-            {
-                currSoundImage = sound[1];
-                backgroundMusic.stop();
-            }
-            else if (currSoundImage == sound[1])
-            {
-                currSoundImage= sound[0];
-                backgroundMusic.playLoop();
-            }
-            
+            TitlePage.soundFigure.halt();
         }
-        getBackground().drawImage(currSoundImage,900,30);
+       
+        
+        
+        
     }
-    
-    public void initMusicFigure()
-    {
-        sound[0] = new GreenfootImage("music on.png");
-        sound[1] = new GreenfootImage("music off.png");
-    }
-    
+   
     public void act()
     {
         

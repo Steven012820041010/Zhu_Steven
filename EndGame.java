@@ -28,7 +28,8 @@ public class EndGame extends World
         world = new MyWorld();
         this.firstOrSecond = firstOrSecond; 
         setBackgroundImage();
-        addObject(con,494,657);
+        setConImage();
+        
         
         
         
@@ -36,6 +37,16 @@ public class EndGame extends World
     public void act()
     {
        
+    }
+    
+    public void setConImage()
+    {
+        if(firstOrSecond)
+        {
+            addObject(con,495,657);
+        }else{
+            addObject(con,510,665);
+        }
     }
     
     public void setBackgroundImage()

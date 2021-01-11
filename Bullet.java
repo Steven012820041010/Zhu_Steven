@@ -13,6 +13,7 @@ public class Bullet extends Actor
      * Act - do whatever the Bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    SimpleTimer timer = new SimpleTimer();
     GreenfootSound shootingSound  = new GreenfootSound("GunShotSound0.mp3");
     MyWorld world;
     
@@ -23,7 +24,7 @@ public class Bullet extends Actor
     
     public Bullet ()
     {
-        
+        timer.mark();
         
         shootingSound.setVolume(40);
         shootingSound.play();
@@ -34,7 +35,12 @@ public class Bullet extends Actor
   
     public void act() 
     {
-        move(40);
+        if(timer.millisElapsed()<100)
+        {
+            move(40);
+        }else{
+            move(25);
+        }
         bounce();
         collisionWithTank();
         removeBullet();
@@ -44,6 +50,32 @@ public class Bullet extends Actor
     
     public void turnAngleAtEdge()
     {
+        //Right
+        if(getRotation()==0)
+        {
+            setRotation(180);
+        }
+        
+        //Left
+        if(getRotation()==180)
+        {
+            setRotation(0);
+        }
+        
+        //Up
+        if(getRotation()==270)
+        {
+            setRotation(90);
+        }
+        
+        //Down
+        if(getRotation()==90)
+        {
+            setRotation(270);
+        }
+        
+        
+        
         //Top-Left
         if (getRotation()>180 && getRotation()<270 && getY() <= 5)
         {
@@ -164,6 +196,7 @@ public class Bullet extends Actor
             world.removeObject(world.tank2);
             world.removeObject(this); 
             world.firstTankIncreaseScore();
+
             world.tank2 = null;
             world.respawn();
 
