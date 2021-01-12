@@ -17,6 +17,7 @@ public class TitlePage extends World
     GreenfootImage[] sound = new GreenfootImage [2];
     StartButton start = new StartButton();
     InfoButton info = new InfoButton();
+   
     SimpleTimer time = new SimpleTimer();
     
     Label titleTank;
@@ -62,7 +63,9 @@ public class TitlePage extends World
         // addObject(gameInfo[0],500,550);
         addObject(soundFigure,912,60);
         addObject(start,500,500);
+        
         addObject(info,90,60);
+        
        
     }
     

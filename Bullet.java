@@ -14,6 +14,7 @@ public class Bullet extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     SimpleTimer timer = new SimpleTimer();
+    
     GreenfootSound shootingSound  = new GreenfootSound("GunShotSound0.mp3");
     MyWorld world;
     
@@ -25,6 +26,7 @@ public class Bullet extends Actor
     public Bullet ()
     {
         timer.mark();
+        //time.mark();
         
         shootingSound.setVolume(40);
         shootingSound.play();
@@ -41,9 +43,18 @@ public class Bullet extends Actor
         }else{
             move(25);
         }
+         
         bounce();
         collisionWithTank();
         removeBullet();
+        /*
+        if (time.millisElapsed()>4000)
+        {
+            System.out.println("hi");  
+            
+            world.respawn();
+        }
+        */
         
         
     }
@@ -123,7 +134,7 @@ public class Bullet extends Actor
        world = (MyWorld)getWorld();
        for (Wall wal : world.wall)
        {
-            if (Math.abs(wal.getX()-this.getX())<40 && Math.abs(wal.getY()-this.getY())<40)
+            if (Math.abs(wal.getX()-this.getX())<50 && Math.abs(wal.getY()-this.getY())<50)
             {
                 //Top-Left
                 if (getRotation()>180 && getRotation()<270)
@@ -180,28 +191,36 @@ public class Bullet extends Actor
     
     public void collisionWithTank()
     {
+        
         world = (MyWorld)getWorld(); 
         if (world.tank1 != null && intersects(world.tank1))
         {
+            
             world.removeObject(world.tank1);
             world.removeObject(this);
             world.secondTankIncreaseScore();
             world.tank1 = null;
-            world.respawn();
+            world.respawnTime();
+            //world.respawn();
+        
             return;
 
         }
         else if(world.tank2 != null && intersects(world.tank2))
         {
+            
             world.removeObject(world.tank2);
             world.removeObject(this); 
             world.firstTankIncreaseScore();
-
+            world.respawnTime();
             world.tank2 = null;
-            world.respawn();
-
+            
+            //world.respawn();
+           
             return;
         }
+        
+        
         
     }
     

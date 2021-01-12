@@ -19,11 +19,13 @@ public class MyWorld extends World
     Label scoreLabel2;
     Label nameLabel1;
     Label nameLabel2;
-    
+    Label[] waitingSign;
     Sign scoreSign;
     
     
     SimpleTimer timer = new SimpleTimer();
+    SimpleTimer respawnTimer = new SimpleTimer();
+    SimpleTimer coinTimer = new SimpleTimer();
     
     Tank tank1 = new Tank(true);
     Tank tank2 = new Tank(false);
@@ -42,7 +44,7 @@ public class MyWorld extends World
     int num = 0;
     
     private boolean isPause = false;
-    
+    public boolean tankOrCoin = true;
     public MyWorld()
     {    
        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -54,6 +56,7 @@ public class MyWorld extends World
         
         
         Coin coin = new Coin(); 
+        waitingSign = new Label[3];
         scoreLabel1 = new Label(0,30);
         scoreLabel2 = new Label(0,30);
         
@@ -63,6 +66,8 @@ public class MyWorld extends World
         
         arrow = new BackArrow();
         wall = new Wall[10];
+        Wall wa = new Wall();
+        addObject(wa,1190,45);
         sign = new Sign[3];
         bul = new ArrayList<Bullet>();
         //Tank tank = new Tank(true);
@@ -107,11 +112,19 @@ public class MyWorld extends World
     
     public void act()
     {
+       
         pause();
         checkScore();
+        removeScoreSign();
+        respawn();
+        
+    }
+    
+    public void removeScoreSign()
+    {
         if (timer.millisElapsed()>800)
         {
-            //timer.mark();
+            
             removeObject(scoreSign);
         }
     }
@@ -141,6 +154,17 @@ public class MyWorld extends World
         sign[2] = new PauseSign();
     }
     
+    public void setWaitingSign()
+    {
+        
+        for (int i=0; i<waitingSign.length; i++)
+        {
+            waitingSign[i] = new Label (3-i,60);
+            
+        }
+    }
+    
+    
     public void pause()
     {
         
@@ -151,9 +175,19 @@ public class MyWorld extends World
                 addObject(sign[2],600,400);
                 Greenfoot.delay(1);
             }
+            removeObject(sign[2]);
+            setWaitingSign();
+       
+            for (int i=0; i<waitingSign.length; i++)
+            {
+                
+                waitingSign[i].setFillColor(greenfoot.Color.RED);
+                addObject(waitingSign[i],600,400);
+                Greenfoot.delay(15);
+                removeObject(waitingSign[i]);
+            }
         }
-        removeObject(sign[2]);
-        
+       
        
     }
     public void setTenRandomWall()
@@ -166,31 +200,38 @@ public class MyWorld extends World
         }
         int counter = 0;
         //Add 10 walls
+        int X = Greenfoot.getRandomNumber(1000);
+        int Y = Greenfoot.getRandomNumber(800);
         while (counter<wall.length)
         {
-            int X = Greenfoot.getRandomNumber(1000);
-            int Y = Greenfoot.getRandomNumber(800);
-            if (awayFromTank1(X,Y) || awayFromTank2(X,Y))
+ 
+            if (awayFromTank1(X,Y) && awayFromTank2(X,Y) && awayFromBulletFigure(X,Y))
             {
                 addObject(wall[counter],X,Y);
                 counter++;
-            }else{
+               
+            }
                 X = Greenfoot.getRandomNumber(1000);
                 Y = Greenfoot.getRandomNumber(800);
-            }
+            
             
         }
         
     }
     
+    public boolean awayFromBulletFigure(int X, int Y)
+    {
+        return ((X>150 && Y<720) && (X<1050 && Y<720));
+    }
+    
     public boolean awayFromTank1(int X, int Y)
     {
-        return (X<tank1.getX()-30 || X>tank1.getX()) && (Y<tank1.getY()-20 || Y>tank1.getY()+20);
+        return (X<tank1.getX()-50 || X>tank1.getX()+50) && (Y<tank1.getY()-40 || Y>tank1.getY()+40);
     }
     
     public boolean awayFromTank2(int X, int Y)
     {
-        return (X<tank2.getX()-30 || X>tank2.getX()) && (Y<tank2.getY()-20 || Y>tank2.getY()+20);
+        return (X<tank2.getX()-50 || X>tank2.getX()+50) && (Y<tank2.getY()-40 || Y>tank2.getY()+40);
     }
     
     public void removeAllWall()
@@ -214,6 +255,15 @@ public class MyWorld extends World
         {
             removeObject(bul.get(i));
             
+        }
+    }
+    
+    public void removeAllBulletFigure()
+    {
+        for (int i=0; i<bulFigure1.length; i++)
+        {
+            removeObject(bulFigure1[i]);
+            removeObject(bulFigure2[i]);
         }
     }
     
@@ -252,30 +302,53 @@ public class MyWorld extends World
         scoreLabel2.setValue(score2);
     }
     
+    public void createCoinTime()
+    {
+        
+    }
+    
     public void createCoin()
     {
         //
-        Coin c = new Coin();
-        int X = Greenfoot.getRandomNumber(1000);
-        int Y = Greenfoot.getRandomNumber(800);
-        addObject(c,X,Y);
+        if (coinTimer.millisElapsed() > 5000)
+        {
+            
+            Coin c = new Coin();
+            int X = Greenfoot.getRandomNumber(1000);
+            int Y = Greenfoot.getRandomNumber(800);
+            addObject(c,X,Y);
+        }
     }
-    
+    public void respawnTime()
+    {
+        if ((!(score1 >= 21 || score2>= 21)))
+        {
+            respawnTimer.mark();
+            
+        }
+    }
     public void respawn()
     {
-        if (!(score1 >= 21 || score2>= 21))
+        if (tank1 == null || tank2 == null)
         {
-            removeAllTank();
-            removeAllWall();
-            removeAllBullet();
-            
-            tank1 = new Tank(true);
-            tank2 = new Tank(false);
-            addObject(tank1,Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
-            addObject(tank2,700 + Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
-            displaySign();
-            setTenRandomWall();
-        }   
+            if (respawnTimer.millisElapsed() > 3000 && respawnTimer.millisElapsed() < 4000)
+            {
+              
+                removeAllTank();
+                removeAllWall();
+                removeAllBullet();
+                removeAllBulletFigure();
+                
+                tank1 = new Tank(true);
+                tank2 = new Tank(false);
+                addObject(tank1,Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
+                addObject(tank2,700 + Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
+                displaySign();
+                setTenRandomWall();
+                addBulletFigure(30,750,bulFigure1);
+                addBulletFigure(1050,750,bulFigure2);
+            }   
+        }
     }
     
     public void displaySign()

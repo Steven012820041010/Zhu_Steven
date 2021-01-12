@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Tank extends Actor
 {
-    private final int MAX_COOLDOWN = 20;
+    private final int MAX_COOLDOWN = 15;
     private final int MAX_BULLETS = 8;
 
     private GreenfootImage image;
@@ -137,10 +137,10 @@ public class Tank extends Actor
     }
     public void touchCoin()
     {
-       
+        
         if (isTouching(Coin.class) && player)
         {
-            
+            world.coinTimer.mark();
             removeTouching(Coin.class);
             world.firstTankIncreaseScore();
             world.createCoin();
@@ -148,9 +148,10 @@ public class Tank extends Actor
         }
         else if (isTouching(Coin.class) && !player)
         {
+            world.coinTimer.mark();
             removeTouching(Coin.class);
             world.secondTankIncreaseScore();
-            world.createCoin();
+           // world.createCoin();
         }
         
         
