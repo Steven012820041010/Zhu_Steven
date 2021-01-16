@@ -14,11 +14,11 @@ public class Bullet extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     SimpleTimer timer = new SimpleTimer();
-    
+    SimpleTimer bounce_cool_down = new SimpleTimer();
     GreenfootSound shootingSound  = new GreenfootSound("GunShotSound0.mp3");
-    MyWorld world;
+    Game world;
     
-    private int MAX_BOUNCE = 6;
+    private int MAX_BOUNCE = 8;
     private int bounce;
     private int soundIndex = 0;
     boolean score = true;
@@ -37,22 +37,44 @@ public class Bullet extends Actor
   
     public void act() 
     {
-        if(timer.millisElapsed()<100)
+        if(timer.millisElapsed()<20)
         {
-            move(40);
+            move(45);
         }else{
-            move(25);
+            move(8);
         }
          
         bounce();
         collisionWithTank();
         removeBullet();
         /*
-        if (time.millisElapsed()>4000)
+        if(collided())
         {
-            System.out.println("hi");  
             
-            world.respawn();
+            //Top-Left
+                if (getRotation()>180 && getRotation()<270)
+                {
+                    setRotation(270+(270-getRotation()));
+                }
+            
+                //Bottom-Left
+                if (getRotation()>90 && getRotation()<180) 
+                {
+                    setRotation(90-(getRotation()-90));
+                }
+                
+                //Bottom-Right
+                if (getRotation()>0 && getRotation()<90)
+                {
+                    setRotation(90+(90-getRotation()));
+                }
+                
+                //Top-Right
+                if (getRotation()>270 && getRotation()<360)
+                {
+                    setRotation(270-(getRotation()-270));
+                }
+                
         }
         */
         
@@ -129,40 +151,46 @@ public class Bullet extends Actor
         
     }
     
+    
     public void turnAngleAtWall()
     {
-       world = (MyWorld)getWorld();
+       world = (Game)getWorld();
+        
        for (Wall wal : world.wall)
        {
-            if (Math.abs(wal.getX()-this.getX())<50 && Math.abs(wal.getY()-this.getY())<50)
+            
+            if (Math.abs(wal.getX()-getX())<=120 && Math.abs(wal.getY()-getY())<=160)
             {
+                
                 //Top-Left
-                if (getRotation()>180 && getRotation()<270)
+                if (getRotation()>=180 && getRotation()<=270)
                 {
                     setRotation(270+(270-getRotation()));
                 }
             
                 //Bottom-Left
-                if (getRotation()>90 && getRotation()<180) 
+                if (getRotation()>=90 && getRotation()<=180) 
                 {
+                    System.out.println(getRotation());
                     setRotation(90-(getRotation()-90));
                 }
                 
                 //Bottom-Right
-                if (getRotation()>0 && getRotation()<90)
+                if (getRotation()>=0 && getRotation()<=90)
                 {
                     setRotation(90+(90-getRotation()));
                 }
                 
                 //Top-Right
-                if (getRotation()>270 && getRotation()<360)
+                if (getRotation()>=270 && getRotation()<=360)
                 {
                     setRotation(270-(getRotation()-270));
                 }
+               
+            
+                
             }
-       }
-        
-        
+       }  
     }
     public void bounce()
     {
@@ -192,7 +220,7 @@ public class Bullet extends Actor
     public void collisionWithTank()
     {
         
-        world = (MyWorld)getWorld(); 
+        world = (Game)getWorld(); 
         if (world.tank1 != null && intersects(world.tank1))
         {
             
@@ -218,6 +246,11 @@ public class Bullet extends Actor
             //world.respawn();
            
             return;
+        }
+        
+        else if(world.tank1 == null && world.tank2 == null)
+        {
+            world.respawnTime();
         }
         
         

@@ -8,11 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Tank extends Actor
 {
-    private final int MAX_COOLDOWN = 15;
+    private final int MAX_COOLDOWN = 50;
     private final int MAX_BULLETS = 8;
 
     private GreenfootImage image;
-    public MyWorld world;
+    public Game world;
     public boolean player;
     private int cooldown;
     private int numBullet;
@@ -30,13 +30,13 @@ public class Tank extends Actor
     public Tank(boolean player)
     {
         timer.mark();
-        world = (MyWorld)getWorld();
+        world = (Game)getWorld();
         int angle = Greenfoot.getRandomNumber(360);
         setRotation(angle);
         this.player = player;
         setTankImage();
 
-        speed = 10;
+        speed = 3;
         cooldown = 0;
         numBullet = 0;
         
@@ -85,7 +85,7 @@ public class Tank extends Actor
     {
         if (numBullet==0){
             needToWait = false;
-            world = (MyWorld)getWorld();
+            world = (Game)getWorld();
             if (player)
             {
                 world.addBulletFigure(20,750,world.bulFigure1);
@@ -112,10 +112,10 @@ public class Tank extends Actor
     public void moveForwardTouchWall()
     {
         
-        world = (MyWorld)getWorld();
+        world = (Game)getWorld();
         for (Wall wal : world.wall)
         {
-            if (Math.abs(wal.getX()-this.getX())<40 && Math.abs(wal.getY()-this.getY())<60)
+            if (Math.abs(wal.getX()-this.getX())<30 && Math.abs(wal.getY()-this.getY())<55)
             {
                 move(-speed);
             }
@@ -125,7 +125,7 @@ public class Tank extends Actor
     
     public void moveBackwardTouchWall()
     {
-       world = (MyWorld)getWorld();
+       world = (Game)getWorld();
        for (Wall wal : world.wall)
        {
            if (Math.abs(wal.getX()-this.getX())<40 && Math.abs(wal.getY()-this.getY())<40)
@@ -140,7 +140,7 @@ public class Tank extends Actor
         
         if (isTouching(Coin.class) && player)
         {
-            world.coinTimer.mark();
+            
             removeTouching(Coin.class);
             world.firstTankIncreaseScore();
             world.createCoin();
@@ -148,10 +148,10 @@ public class Tank extends Actor
         }
         else if (isTouching(Coin.class) && !player)
         {
-            world.coinTimer.mark();
+            
             removeTouching(Coin.class);
             world.secondTankIncreaseScore();
-           // world.createCoin();
+            world.createCoin();
         }
         
         
@@ -175,12 +175,12 @@ public class Tank extends Actor
             }
             if (Greenfoot.isKeyDown("left"))
             {
-                turn(-10);
+                turn(-3);
                 
             }
             if (Greenfoot.isKeyDown("right"))
             {
-                turn(10);
+                turn(3);
                 
             }
         }else{
@@ -197,12 +197,12 @@ public class Tank extends Actor
             }
             if (Greenfoot.isKeyDown("a"))
             {
-                turn(-10);
+                turn(-3);
                 
             }
             if (Greenfoot.isKeyDown("d"))
             {
-                turn(10);
+                turn(3);
                 
             }
         }
@@ -216,7 +216,8 @@ public class Tank extends Actor
     {
         numBullet++;
         cooldown = MAX_COOLDOWN;
-        world = (MyWorld)getWorld();
+        world = (Game)getWorld();
+        
         Bullet bullet = new Bullet();
         
         world.bul.add(bullet);

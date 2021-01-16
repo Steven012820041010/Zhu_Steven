@@ -19,8 +19,8 @@ public class StartButton extends Button
         setImage(gifImage.getCurrentImage());
         if (Greenfoot.mouseClicked(this)) 
         {
-            MyWorld mW = new MyWorld();
-            Greenfoot.setWorld(mW);
+            Game game = new Game();
+            Greenfoot.setWorld(game);
         }
     } 
     

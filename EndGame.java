@@ -15,7 +15,7 @@ public class EndGame extends World
      */
     GreenfootImage first = new GreenfootImage("First Win.png");
     GreenfootImage second = new GreenfootImage("Second Win.png");
-    public MyWorld world;
+    public Game world;
     Label scoreLabel1 = new Label (world.score1, 35);
     Label scoreLabel2 = new Label (world.score2, 35);
     
@@ -25,7 +25,7 @@ public class EndGame extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 748, 1); 
-        world = new MyWorld();
+        world = new Game();
         this.firstOrSecond = firstOrSecond; 
         setBackgroundImage();
         setConImage();

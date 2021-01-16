@@ -13,88 +13,65 @@ public class TitlePage extends World
      * Constructor for objects of class Introduction.
      * 
      */
-    GreenfootImage tankImage = new GreenfootImage("tankBattle.png");
-    GreenfootImage[] sound = new GreenfootImage [2];
+    SimpleTimer time = new SimpleTimer();
+    
+    public static Music soundFigure; //
+    
+    GreenfootImage tankImage = new GreenfootImage("tankBattle.png"); //tank image
+    GreenfootImage[] sound = new GreenfootImage [2]; //An array contains 2 images: one is on, and other is off
+    
     StartButton start = new StartButton();
     InfoButton info = new InfoButton();
-   
-    SimpleTimer time = new SimpleTimer();
     
     Label titleTank;
     Label titleBattle;
-    public static Music soundFigure;
     Label[] startButton;
     Label[] gameInfo;
     
     public TitlePage()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 1000x800 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1); 
         time.mark();
-        setBackground(new GreenfootImage("tank background.png"));
-        getBackground().drawImage(tankImage,350,60);
-        
        
-        //backgroundMusic.playLoop();
-        
-        //Init
+        //Initialize
+        setBackground(new GreenfootImage("tank background.png"));//Set background image
+        getBackground().drawImage(tankImage,350,60);
         titleTank = new Label ("TANK" , 110);
         titleBattle = new Label ("BATTLE" , 110);
-        //startButton = new Label[2];
-        //gameInfo = new Label[2];
         soundFigure = new Music();
         
-        //Animation of the word
-        //setAnimationOfInstruction(startButton,30,"Press 's' to start the game ");
-        //setAnimationOfInstruction(gameInfo,20,"Press 'i' to check the instructions of the game ");
-        
-        //Tank
+        //Label "Tank"
         titleTank.setFillColor(greenfoot.Color.GREEN);
-        titleTank.setLineColor(greenfoot.Color.GREEN.darker().darker());
-        //Battle
+        titleTank.setLineColor(greenfoot.Color.GREEN.darker().darker());//Dark green
+        
+        //Label "Battle"
         titleBattle.setFillColor(greenfoot.Color.RED);
-        titleBattle.setLineColor(greenfoot.Color.RED.darker().darker());
+        titleBattle.setLineColor(greenfoot.Color.RED.darker().darker());//Dark red
         
-        
-        
+        //Adding Object
         addObject(titleTank,400,240);
         addObject(titleBattle,550,350);
-        //addObject(startButton[0],500,500);
-        // addObject(gameInfo[0],500,550);
         addObject(soundFigure,912,60);
         addObject(start,500,500);
-        
         addObject(info,90,60);
         
        
     }
     
-    /*
-    public void setAnimationOfInstruction(Label[] label,int fontSize,String instruction)
-    {
-        for (int i=0; i<label.length; i++)
-        {
-            label[i] = new Label (instruction, fontSize + 2*i);
-            label[i].setFillColor(greenfoot.Color.BLACK);
-        }
-    }
-    */
-    
-    
     public void act()
     {
-        //animateInstruction();
         playGameOrReadIntro();
-        //soundFigure.clickMusicButton();
     }
     
-    
-    
+    /**
+     * Start the game or explains the operation of the game
+     */
     public void playGameOrReadIntro()
     {
         if (Greenfoot.isKeyDown("s"))
         {
-           MyWorld gameWorld = new MyWorld();
+           Game gameWorld = new Game();
            Greenfoot.setWorld(gameWorld);
         }
         
@@ -104,30 +81,5 @@ public class TitlePage extends World
             Greenfoot.setWorld(intro);
         }
     }
-     /*
-    public void animateInstruction()
-    {
-        //time.mark();
-        for (int i=0; i<gameInfo.length; i++)
-        {
-            if (time.millisElapsed()>500)
-            {
-                time.mark();
-                addObject(startButton[i],500,500);
-                addObject(gameInfo[i],500,550);
-            }
-            
-           
-            if (time.millisElapsed()>1000)
-            {
-                time.mark();
-                removeObject(startButton[i]);
-                removeObject(gameInfo[i]);
-            }
-       
-        }
-        
-        
-    }
-    */
+    
 }

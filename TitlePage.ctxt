@@ -5,7 +5,7 @@ comment1.params=
 comment1.target=TitlePage()
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\n\ \ \ \ public\ void\ setAnimationOfInstruction(Label[]\ label,int\ fontSize,String\ instruction)\n\ \ \ \ {\n\ \ \ \ \ \ \ \ for\ (int\ i\=0;\ i<label.length;\ i++)\n\ \ \ \ \ \ \ \ {\n\ \ \ \ \ \ \ \ \ \ \ \ label[i]\ \=\ new\ Label\ (instruction,\ fontSize\ +\ 2*i);\n\ \ \ \ \ \ \ \ \ \ \ \ label[i].setFillColor(greenfoot.Color.BLACK);\n\ \ \ \ \ \ \ \ }\n\ \ \ \ }\n
 comment3.params=
 comment3.target=void\ playGameOrReadIntro()
+comment3.text=\n\ Start\ the\ game\ or\ explains\ the\ operation\ of\ the\ game\n
 numComments=4

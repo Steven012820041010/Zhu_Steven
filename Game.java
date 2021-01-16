@@ -8,50 +8,45 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class Game extends World
 {
     
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
-    Label scoreLabel1;
-    Label scoreLabel2;
-    Label nameLabel1;
-    Label nameLabel2;
-    Label[] waitingSign;
-    Sign scoreSign;
+    SimpleTimer pointTimer = new SimpleTimer(); //Increase score
+    SimpleTimer respawnTimer = new SimpleTimer(); //Check the respawn time
     
-    
-    SimpleTimer timer = new SimpleTimer();
-    SimpleTimer respawnTimer = new SimpleTimer();
-    SimpleTimer coinTimer = new SimpleTimer();
-    
-    Tank tank1 = new Tank(true);
-    Tank tank2 = new Tank(false);
+    public static int score1; //Red tank score
+    public static int score2; //Green tank score
+    int currPoint = 0; //Once tank increases score
+    Sign scoreSign; //Plus one point or two points
+    Sign[] sign; //Contains "Battle", "Pause", and "Ready" sign
     BackArrow arrow;
+   
+    Label scoreLabel1; //Label Red tank score
+    Label scoreLabel2; //Label Green tank score
+    Label nameLabel1; //Label Red: 
+    Label nameLabel2; //Label Green: 
+    Label[] waitingSign; //Stores 3, 2, 1 after the game resumes
+    boolean isPause; 
+    
+    Tank tank1 = new Tank(true); //True means first tank
+    Tank tank2 = new Tank(false); //False means second tank
+    
+    List<Bullet> bul; //Stores every bullet once the tank shoots
+    BulletSymbol[] bulFigure1 = new BulletSymbol[8]; //Numbers of bullet remain for first tank
+    BulletSymbol[] bulFigure2 = new BulletSymbol[8]; //Numbers of bullet remain for second tank
+    int indexImage = 0; //Controls both bulFigure1 and bulFigure 2
+
     Wall[] wall;
-    Sign[] sign;
-    List<Bullet> bul;
-    public int button;
     
-    public static int score1;
-    public static int score2 = 0;
-    
-    public BulletSymbol[] bulFigure1 = new BulletSymbol[8];
-    public BulletSymbol[] bulFigure2 = new BulletSymbol[8];
-    private int indexImage = 0;
-    int num = 0;
-    
-    private boolean isPause = false;
-    public boolean tankOrCoin = true;
-    public MyWorld()
+    public Game()
     {    
-       // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-       
+        // Create a new world with 1200x800 cells with a cell size of 1x1 pixels.
         super(1200, 800, 1);
-        
-        setBackground(new GreenfootImage("yellow background.jpg"));
+        setBackground(new GreenfootImage("yellow background.jpg")); //Set wor
         
         
         
@@ -66,15 +61,15 @@ public class MyWorld extends World
         
         arrow = new BackArrow();
         wall = new Wall[10];
-        Wall wa = new Wall();
-        addObject(wa,1190,45);
+        
+        
         sign = new Sign[3];
         bul = new ArrayList<Bullet>();
         //Tank tank = new Tank(true);
         //addObject(tank,600,400);
         // addObject(tank,200,160);
          //tank.setRotation(0);
-        
+        isPause = false;
         score1 = 0;
         score2 = 0;
         nameLabel1.setFillColor(greenfoot.Color.RED);
@@ -122,7 +117,7 @@ public class MyWorld extends World
     
     public void removeScoreSign()
     {
-        if (timer.millisElapsed()>800)
+        if (pointTimer.millisElapsed()>1000)
         {
             
             removeObject(scoreSign);
@@ -196,7 +191,7 @@ public class MyWorld extends World
         for (int i=0; i<wall.length; i++)
         {
             wall[i] = new Wall();
-            //wall[i].setRotation(Greenfoot.getRandomNumber(2)*90);
+            
         }
         int counter = 0;
         //Add 10 walls
@@ -269,14 +264,14 @@ public class MyWorld extends World
     
     public void firstTankIncreaseScore()
     {
-        timer.mark();
-        num = Greenfoot.getRandomNumber(2)+1;
-        score1 += num;
-        if(num==1)
+        pointTimer.mark();
+        currPoint = Greenfoot.getRandomNumber(2)+1;
+        score1 += currPoint;
+        if(currPoint==1)
         {
             scoreSign = new GainOneSign();
         }
-        else if (num==2)
+        else if (currPoint==2)
         {
             scoreSign = new GainTwoSign();
         }
@@ -287,37 +282,32 @@ public class MyWorld extends World
     
     public void secondTankIncreaseScore()
     {
-        timer.mark();
-        num = Greenfoot.getRandomNumber(2)+1;
-        score2 += num;
-        if(num==1)
+        pointTimer.mark();
+        currPoint = Greenfoot.getRandomNumber(2)+1;
+        score2 += currPoint;
+        if(currPoint==1)
         {
             scoreSign = new GainOneSign();
         }
-        else if (num==2)
+        else if (currPoint==2)
         {
             scoreSign = new GainTwoSign();
         }
         addObject(scoreSign,tank2.getX()+20,tank2.getY());
         scoreLabel2.setValue(score2);
     }
-    
-    public void createCoinTime()
-    {
-        
-    }
+   
     
     public void createCoin()
     {
         //
-        if (coinTimer.millisElapsed() > 5000)
-        {
+        
             
             Coin c = new Coin();
             int X = Greenfoot.getRandomNumber(1000);
             int Y = Greenfoot.getRandomNumber(800);
             addObject(c,X,Y);
-        }
+        
     }
     public void respawnTime()
     {

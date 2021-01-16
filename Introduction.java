@@ -13,37 +13,32 @@ public class Introduction extends World
      * Constructor for objects of class Introduction.
      * 
      */
-    BackArrow arrow;
-    Label back;
-    //Music soundFigure;
+    GreenfootImage player1 = new GreenfootImage("TankModel.png");
+    GreenfootImage player2 = new GreenfootImage("Tank2Model.png");
     
-
+    BackArrow arrow;
+    
+    Label back;
+    
     public Introduction()
     {     
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 1000x668 cells with a cell size of 1x1 pixels.
         super(1000, 668, 1); 
-        //soundFigure = new Music();
+        
+        //Initialize 
         arrow = new BackArrow();
-        
         arrow.setRotation(180);
-        addObject(arrow,63,40);
         back = new Label("Back", 35);
+        
+        //Scale two tank
+        player1.scale(65,45);
+        player2.scale(65,45);
+        
+        //Display object
+        addObject(arrow,63,40);
         addObject(back,65,70);
-        addObject(TitlePage.soundFigure,946,60);
-        Music music = new Music();
-        music.setSoundImage();
-        if (Music.allIndex.get(Music.allIndex.size()-1) == 1)
-        {
-            TitlePage.soundFigure.halt();
-        }
-       
-        
-        
-        
+        getBackground().drawImage(player1,120,200);
+        getBackground().drawImage(player2,845,200);
     }
-   
-    public void act()
-    {
-        
-    }
+    
 }
