@@ -64,7 +64,7 @@ public class Tank extends Actor
         {
             shoot();
         }
-        else if((Greenfoot.isKeyDown("j") && canShoot() && !player))
+        if((Greenfoot.isKeyDown("j") && canShoot() && !player))
         {
             shoot();
         }
@@ -142,7 +142,7 @@ public class Tank extends Actor
         {
             
             removeTouching(Coin.class);
-            world.firstTankIncreaseScore();
+            world.firstTankIncreaseScore(getX(),getY());
             world.createCoin();
             
         }
@@ -150,7 +150,7 @@ public class Tank extends Actor
         {
             
             removeTouching(Coin.class);
-            world.secondTankIncreaseScore();
+            world.secondTankIncreaseScore(getX(),getY());
             world.createCoin();
         }
         

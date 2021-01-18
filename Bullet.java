@@ -34,12 +34,13 @@ public class Bullet extends Actor
         bounce = 0;
     }
     
+    
   
     public void act() 
     {
-        if(timer.millisElapsed()<20)
+        if(timer.millisElapsed()<70)
         {
-            move(45);
+            move(40);
         }else{
             move(8);
         }
@@ -47,36 +48,7 @@ public class Bullet extends Actor
         bounce();
         collisionWithTank();
         removeBullet();
-        /*
-        if(collided())
-        {
-            
-            //Top-Left
-                if (getRotation()>180 && getRotation()<270)
-                {
-                    setRotation(270+(270-getRotation()));
-                }
-            
-                //Bottom-Left
-                if (getRotation()>90 && getRotation()<180) 
-                {
-                    setRotation(90-(getRotation()-90));
-                }
-                
-                //Bottom-Right
-                if (getRotation()>0 && getRotation()<90)
-                {
-                    setRotation(90+(90-getRotation()));
-                }
-                
-                //Top-Right
-                if (getRotation()>270 && getRotation()<360)
-                {
-                    setRotation(270-(getRotation()-270));
-                }
-                
-        }
-        */
+        
         
         
     }
@@ -171,7 +143,7 @@ public class Bullet extends Actor
                 //Bottom-Left
                 if (getRotation()>=90 && getRotation()<=180) 
                 {
-                    System.out.println(getRotation());
+                 
                     setRotation(90-(getRotation()-90));
                 }
                 
@@ -224,13 +196,13 @@ public class Bullet extends Actor
         if (world.tank1 != null && intersects(world.tank1))
         {
             
+            //world.removeObject(world.tank1);
             world.removeObject(world.tank1);
-            world.removeObject(this);
-            world.secondTankIncreaseScore();
+            world.secondTankIncreaseScore(getX(), getY());
+            world.removeObject(this); 
             world.tank1 = null;
             world.respawnTime();
-            //world.respawn();
-        
+            
             return;
 
         }
@@ -238,20 +210,18 @@ public class Bullet extends Actor
         {
             
             world.removeObject(world.tank2);
+            
+            world.firstTankIncreaseScore(getX(),getY()); 
             world.removeObject(this); 
-            world.firstTankIncreaseScore();
-            world.respawnTime();
             world.tank2 = null;
+            world.respawnTime();
+            
             
             //world.respawn();
-           
             return;
         }
         
-        else if(world.tank1 == null && world.tank2 == null)
-        {
-            world.respawnTime();
-        }
+        
         
         
         
