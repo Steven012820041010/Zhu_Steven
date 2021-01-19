@@ -16,14 +16,11 @@ public class InfoButton extends Button
     {
         
     }
+    
     public void act() 
     {
         if (Greenfoot.mouseClicked(this)) 
         {
-            
-            TitlePage.soundFigure.halt();
-            TitlePage tP = new TitlePage();
-            tP.removeObject(tP.soundFigure);
             Introduction in = new Introduction();
             Greenfoot.setWorld(in);
             

@@ -1,12 +1,11 @@
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList.*;
 import java.util.*;
 /**
- * Write a description of class MyWorld here.
+ * Game world is basically setting up all the actor classes I have created. It inclueds the most methods I used in 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2020.11.23
  */
 public class Game extends World
 {
@@ -35,7 +34,7 @@ public class Game extends World
     Tank tank1 = new Tank(true); //True means first tank
     Tank tank2 = new Tank(false); //False means second tank
     
-    List<Bullet> bul; //Stores every bullet once the tank shoots
+    //List<Bullet> bul; //Stores every bullet once the tank shoots
     BulletSymbol[] bulFigure1 = new BulletSymbol[8]; //Numbers of bullet remain for first tank
     BulletSymbol[] bulFigure2 = new BulletSymbol[8]; //Numbers of bullet remain for second tank
     int indexImage = 0; //Controls both bulFigure1 and bulFigure 2
@@ -60,7 +59,6 @@ public class Game extends World
         sign = new Sign[3];
         waitingSign = new Label[3];
         wall = new Wall[10];
-        bul = new ArrayList<Bullet>();
         scoreLabel1 = new Label(0,30);
         scoreLabel2 = new Label(0,30);
         nameLabel1 = new Label("Red:",30);
@@ -74,12 +72,9 @@ public class Game extends World
         
         //Add object
         setSign();
+        setScoreLabel();
         setBulletFigure();
         addObject(arrow,1160,30);
-        addObject(nameLabel1,50,30);
-        addObject(scoreLabel1,95,31);
-        addObject(nameLabel2,1058,30);
-        addObject(scoreLabel2,1110,31);
         addBulletFigure(30,750,bulFigure1);
         addBulletFigure(1050,750,bulFigure2);
         addObject(coin,Greenfoot.getRandomNumber(1000),Greenfoot.getRandomNumber(800));
@@ -88,8 +83,8 @@ public class Game extends World
         setTenRandomWall();
     }
     
-    /** Press "P" to pause the game, and press "R" to resume
-     * 
+    /**
+     * Press "P" to pause the game, and press "R" to resume
      */
     public void pause()
     {
@@ -118,15 +113,23 @@ public class Game extends World
         pause();
         checkScore();
         removeScoreSign();
-        /*
-        if(tank1.getWorld()==null || tank2.getWorld()==null)
-        {
-            */
-            respawn();
-        //}
+        respawn();
     }
     
-    // Set the three signs   
+    /**
+     * Set the score and name labels for both tank
+     */
+    public void setScoreLabel()
+    {
+        addObject(nameLabel1,50,30);
+        addObject(scoreLabel1,95,31);
+        addObject(nameLabel2,1058,30);
+        addObject(scoreLabel2,1110,31);
+    }
+    
+    /**
+     * Set the three signs "Ready", "Battle", and "Pause" sign
+     */  
     public void setSign()
     {
         sign[0] = new ReadySign();
@@ -134,7 +137,8 @@ public class Game extends World
         sign[2] = new PauseSign();
     }
     
-    //Display "Ready" and "Battle" sign
+    /**Display "Ready" and "Battle" sign
+     */
     public void displaySign()
     {
         addObject(sign[0],600,400);
@@ -147,7 +151,9 @@ public class Game extends World
         
     }
     
-    //Set "3", "2", and "1"
+    /**
+     * Set Label "3", "2", and "1"
+     */
     public void setWaitingSign()
     {
         for (int i=0; i<waitingSign.length; i++)
@@ -167,8 +173,8 @@ public class Game extends World
         } 
     }
     
-    /** Set the first bullet figure in arr at X and Y and increasing the X position 14 each time.
-     * 
+    /** 
+     * Set the first bullet figure in arr at X and Y and increasing the X position 14 each time.
      */
     public void addBulletFigure(int X, int Y, BulletSymbol[] arr)
     {
@@ -181,26 +187,32 @@ public class Game extends World
         }
     }
     
-    //Return true if the object is near the bullet figure; otherwise, return false
+    /** 
+     * Return true if the object is near the bullet figure; otherwise, return false
+     */
     public boolean awayFromBulletFigure(int X, int Y)
     {
         return ((X>150 && Y<720) && (X<1050 && Y<720));
     }
     
-    //Return true if the object is near first tank; otherwise, return false
+    /**
+     * Return true if the object is near first tank; otherwise, return false
+     */
     public boolean awayFromTank1(int X, int Y)
     {
         return (X<tank1.getX()-50 || X>tank1.getX()+50) && (Y<tank1.getY()-40 || Y>tank1.getY()+40);
     }
     
-    //Return true if the object is near second tank; otherwise, return false
+    /**
+     * Return true if the object is near second tank; otherwise, return false
+     */
     public boolean awayFromTank2(int X, int Y)
     {
         return (X<tank2.getX()-50 || X>tank2.getX()+50) && (Y<tank2.getY()-40 || Y>tank2.getY()+40);
     }
     
-    /** Set ten wall randomly in the Game
-     * 
+    /**
+     * Set ten walls randomly in the Game 
      */
     public void setTenRandomWall()
     {
@@ -210,17 +222,17 @@ public class Game extends World
             wall[i] = new Wall();
             
         }
-        int counter = 0;
+        int numWall = 0;
         
         //Add 10 walls
         int X = Greenfoot.getRandomNumber(1000);
         int Y = Greenfoot.getRandomNumber(800);
-        while (counter<wall.length)
+        while (numWall<wall.length)
         {
             if (awayFromTank1(X,Y) && awayFromTank2(X,Y) && awayFromBulletFigure(X,Y))
             {
-                addObject(wall[counter],X,Y);
-                counter++;
+                addObject(wall[numWall],X,Y);
+                numWall++; 
             }
             X = Greenfoot.getRandomNumber(1000);
             Y = Greenfoot.getRandomNumber(800);
@@ -228,8 +240,8 @@ public class Game extends World
         
     }
     
-    /** Change the world to EndGame if score1 or score 2 is greater or equal to 21
-     * 
+    /**
+     * Change the world to EndGame if score1 or score 2 is greater or equal to 21 
      */
     public void checkScore()
     {
@@ -245,8 +257,8 @@ public class Game extends World
         }
     }
     
-    /** First Tank increase score
-     * 
+    /** 
+     * First Tank increases score 
      */
     public void firstTankIncreaseScore(int x, int y)
     {
@@ -265,6 +277,9 @@ public class Game extends World
         scoreLabel1.setValue(score1);
     }
     
+    /** 
+     * Second Tank increases score 
+     */
     public void secondTankIncreaseScore(int x, int y)
     {
         pointTimer.mark();
@@ -282,6 +297,8 @@ public class Game extends World
         scoreLabel2.setValue(score2);
     }
      
+    /** Create coin randomly in Game 
+     */
     public void createCoin()
     {
         Coin c = new Coin();
@@ -290,6 +307,8 @@ public class Game extends World
         addObject(c,X,Y);
     }
     
+    /** Count the time after a tank has been shoot 
+     */
     public void respawnTime()
     {
         if ((!(score1 >= 21 || score2>= 21)))
@@ -298,29 +317,39 @@ public class Game extends World
         }
     }
     
+    /** Remove all objects in Game and initialize them again
+     * 
+     */
     public void respawn()
     {
         if(tank1 == null || tank2 == null)
         {
             if (respawnTimer.millisElapsed() > 3000 && respawnTimer.millisElapsed() < 4000)
             {
-                
-              
-                removeAllTank();
-                removeAllWall();
-                removeAllBullet();
-                removeAllBulletFigure();
-                
+                //removeAllTank();
+                //removeAllWall();
+                //removeAllBullet();
+                //removeAllBulletFigure();
+                //removeAllScoreSign();
+                removeObjects(getObjects(null));
                 tank1 = new Tank(true);
                 tank2 = new Tank(false);
+                addObject(arrow,1160,30);
                 addObject(tank1,Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
                 addObject(tank2,700 + Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(800));
                 displaySign();
+                createCoin();
                 setTenRandomWall();
+                setScoreLabel();
                 addBulletFigure(30,750,bulFigure1);
                 addBulletFigure(1050,750,bulFigure2);
             } 
         }
+    }
+    
+    public void removeAllScoreSign()
+    {
+        removeObject(scoreSign);
     }
     
     public void removeAllWall()
@@ -336,14 +365,6 @@ public class Game extends World
     {
         removeObject(tank1);
         removeObject(tank2);
-    }
-    
-    public void removeAllBullet()
-    {
-        for (int i=0; i<bul.size(); i++)
-        {
-            removeObject(bul.get(i));    
-        }
     }
     
     public void removeAllBulletFigure()

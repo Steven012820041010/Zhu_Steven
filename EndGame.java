@@ -13,32 +13,28 @@ public class EndGame extends World
      * Constructor for objects of class EndGame.
      * 
      */
-    GreenfootImage first = new GreenfootImage("First Win.png");
-    GreenfootImage second = new GreenfootImage("Second Win.png");
-    public Game world;
+    Game world;
+    boolean firstOrSecond;
+    Continue con = new Continue();
+    
     Label scoreLabel1 = new Label (world.score1, 35);
     Label scoreLabel2 = new Label (world.score2, 35);
     
-    Continue con = new Continue();
-    public boolean firstOrSecond;
+    GreenfootImage first = new GreenfootImage("First Win.png");
+    GreenfootImage second = new GreenfootImage("Second Win.png");
+    
     public EndGame(boolean firstOrSecond)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 1000x748 cells with a cell size of 1x1 pixels.
         super(1000, 748, 1); 
         world = new Game();
-        this.firstOrSecond = firstOrSecond; 
-        setBackgroundImage();
-        setConImage();
+        this.firstOrSecond = firstOrSecond; // Determine which tank wins
+        setBackgroundImage(); //Set winning page
+        setConImage(); //Add continue button
         
-        
-        
-        
-    }
-    public void act()
-    {
-       
     }
     
+    //Set continue button 
     public void setConImage()
     {
         if(firstOrSecond)
@@ -49,6 +45,9 @@ public class EndGame extends World
         }
     }
     
+    /**
+     * Set background image based on the boolean firstOrSecond
+     */
     public void setBackgroundImage()
     {
         if (firstOrSecond)
@@ -65,5 +64,5 @@ public class EndGame extends World
         }
     }
         
- 
+
 }

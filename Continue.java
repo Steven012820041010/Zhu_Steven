@@ -9,8 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Continue extends Button
 {
     /**
-     * Act - do whatever the Continue wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Return to the TitlePage after pressing the Continue button
      */
     public Continue()
     {

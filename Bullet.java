@@ -13,24 +13,25 @@ public class Bullet extends Actor
      * Act - do whatever the Bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    SimpleTimer timer = new SimpleTimer();
-    SimpleTimer bounce_cool_down = new SimpleTimer();
-    GreenfootSound shootingSound  = new GreenfootSound("GunShotSound0.mp3");
     Game world;
-    
-    private int MAX_BOUNCE = 8;
-    private int bounce;
-    private int soundIndex = 0;
+
+    int numTouchTank; 
     boolean score = true;
+    private int bounce;
+    private final int MAX_BOUNCE = 8;
+    private int soundIndex = 0;
+    
+    SimpleTimer timer = new SimpleTimer();
+    GreenfootSound shootingSound  = new GreenfootSound("GunShotSound0.mp3");
     
     public Bullet ()
     {
         timer.mark();
-        //time.mark();
-        
+
         shootingSound.setVolume(40);
         shootingSound.play();
         
+        numTouchTank = 0;
         bounce = 0;
     }
     
@@ -38,21 +39,32 @@ public class Bullet extends Actor
   
     public void act() 
     {
-        if(timer.millisElapsed()<70)
-        {
-            move(40);
-        }else{
-            move(8);
-        }
-         
+        
+        fire(30,8);
         bounce();
         collisionWithTank();
         removeBullet();
         
-        
-        
     }
     
+    
+    
+    /** 
+     * Set the initial speed of the bullet to "init", and slows down to speed "end" after 50 milliseconds
+     */
+    public void fire(int init, int end)
+    {
+        if(timer.millisElapsed()<60)
+        {
+            move(init);
+        }else{
+            move(end);
+        }
+    }
+    
+    /**
+     * Bounce at the edge of the Game world
+     */
     public void turnAngleAtEdge()
     {
         //Right
@@ -78,8 +90,6 @@ public class Bullet extends Actor
         {
             setRotation(270);
         }
-        
-        
         
         //Top-Left
         if (getRotation()>180 && getRotation()<270 && getY() <= 5)
@@ -123,15 +133,23 @@ public class Bullet extends Actor
         
     }
     
+    /**
+     * Return true if the bullet is nearby the Wall class
+     */
+    public boolean collisionWithTank(Wall wal)
+    {
+        return Math.abs(wal.getX()-getX())<=40 && Math.abs(wal.getY()-getY())<=160;
+    }
     
+    /**
+     * Bounce at the Wall
+     */
     public void turnAngleAtWall()
     {
        world = (Game)getWorld();
-        
        for (Wall wal : world.wall)
        {
-            
-            if (Math.abs(wal.getX()-getX())<=120 && Math.abs(wal.getY()-getY())<=160)
+            if (collisionWithTank(wal))
             {
                 
                 //Top-Left
@@ -159,74 +177,77 @@ public class Bullet extends Actor
                     setRotation(270-(getRotation()-270));
                 }
                
-            
-                
             }
        }  
     }
+    
+    /**
+     * Increase varible bounce each time after bullet bounces at wall or the edge of the Game world
+     */
     public void bounce()
     {
         if(isAtEdge())
         {
             turnAngleAtEdge();
-            
             bounce++;
         }
         if (isTouching(Wall.class))
         {
-            turnAngleAtWall();
-               
+            turnAngleAtWall(); 
             bounce++;
-        }   
-       
+        }  
     }
     
+    /**
+     * Remove the bullet after variable bounce is greater than MAX_BOUNCE
+     */
     public void removeBullet()
     {
-        if (bounce>MAX_BOUNCE)
+        if (bounce>MAX_BOUNCE && this != null)
         {
             getWorld().removeObject(this);
         }
     }
     
+    /**
+     * Check the collision with tank and start respawn timer in Game world
+     */
     public void collisionWithTank()
     {
         
-        world = (Game)getWorld(); 
-        if (world.tank1 != null && intersects(world.tank1))
+        if (isTouching(Tank.class))
         {
-            
-            //world.removeObject(world.tank1);
-            world.removeObject(world.tank1);
-            world.secondTankIncreaseScore(getX(), getY());
-            world.removeObject(this); 
-            world.tank1 = null;
-            world.respawnTime();
-            
-            return;
-
+            if (numTouchTank>3)
+            {
+                world = (Game)getWorld();
+                if (world.tank1 != null && intersects(world.tank1))
+                { 
+                    numTouchTank=0;
+                    world.removeObject(world.tank1);
+                    world.secondTankIncreaseScore(1075, 60);
+                    world.removeObject(this); 
+                    world.tank1 = null;
+                    world.respawnTime();
+                    return;
+        
+                }
+                if(world.tank2 != null && intersects(world.tank2))
+                {
+                    numTouchTank=0;
+                    world.removeObject(world.tank2);
+                    world.firstTankIncreaseScore(70,60); 
+                    world.removeObject(this); 
+                    world.tank2 = null;
+                    world.respawnTime();
+                    return;
+                }
+            }
+            else
+            {
+                numTouchTank++;
+            }
         }
-        else if(world.tank2 != null && intersects(world.tank2))
-        {
-            
-            world.removeObject(world.tank2);
-            
-            world.firstTankIncreaseScore(getX(),getY()); 
-            world.removeObject(this); 
-            world.tank2 = null;
-            world.respawnTime();
-            
-            
-            //world.respawn();
-            return;
-        }
-        
-        
-        
-        
         
     }
-    
-    
-        
+       
 }

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Music
-comment0.text=\n\ Write\ a\ description\ of\ class\ Music\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ Music\ here.\n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.12.23\n
 comment1.params=
 comment1.target=Music()
 comment2.params=
@@ -9,10 +9,11 @@ comment3.params=
 comment3.target=void\ initMusicFigure()
 comment4.params=
 comment4.target=void\ setSoundImage()
+comment4.text=\n\ Set\ the\ current\ sound\ image\ using\ variable\ currIndex\n
 comment5.params=
-comment5.target=int\ getIndex()
+comment5.target=void\ halt()
+comment5.text=\n\ Stop\ the\ music\n
 comment6.params=
-comment6.target=void\ halt()
-comment7.params=
-comment7.target=void\ clickMusicButton()
-numComments=8
+comment6.target=void\ clickMusicButton()
+comment6.text=\n\ Turn\ on\ the\ music\ if\ it\ is\ not\ playing;\ otherwise,\ turn\ it\ on.\n
+numComments=7

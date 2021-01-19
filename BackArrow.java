@@ -9,8 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class BackArrow extends Button
 {
     /**
-     * Act - do whatever the BackArrow wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Return to the TitlePage after pressing the BackArrow button
      */
     
     public BackArrow()
@@ -19,11 +18,8 @@ public class BackArrow extends Button
     }
     public void act() 
     {
-        // Add your action code here.
         if (Greenfoot.mouseClicked(this)) 
         {
-            //Introduction in = new Introduction();
-            
             TitlePage tP = new TitlePage();
             Greenfoot.setWorld(tP);
         }
