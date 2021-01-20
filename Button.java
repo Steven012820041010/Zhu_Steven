@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Button here.
+ * Include all the button used in the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2021.1.5
  */
 public class Button extends Actor
 {

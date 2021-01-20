@@ -1,6 +1,7 @@
 #BlueJ class context
 comment0.target=Introduction
-comment0.text=\n\ Write\ a\ description\ of\ class\ Introduction\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Explain\ the\ operations\ and\ the\ rules\ of\ the\ game\ \n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.12.23\n
 comment1.params=
 comment1.target=Introduction()
+comment1.text=\n\ Explain\ the\ operations\ and\ the\ rules\ of\ the\ game\ \n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.12.23\n
 numComments=2

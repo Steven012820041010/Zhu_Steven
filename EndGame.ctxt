@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=EndGame
-comment0.text=\n\ Write\ a\ description\ of\ class\ EndGame\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Show\ the\ score\ of\ each\ player\ and\ reveal\ the\ winner\n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2021.1.7\n
 comment1.params=firstOrSecond
 comment1.target=EndGame(boolean)
 comment2.params=

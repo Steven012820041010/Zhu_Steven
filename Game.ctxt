@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Game
-comment0.text=\n\ Tank\ Battle\ is\ a\ two-players\ game\n\ is\ basically\ setting\ up\ all\ the\ actor\ classes\ I\ have\ created.\ It\ inclueds\ the\ most\ methods\ I\ used\ in\ \n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.11.23\n
+comment0.text=\n\ Tank\ Battle\ is\ a\ two-players\ game.\ Touch\ coin\ and\ shoot\ down\ the\ opponent's\ tank\ can\ both\ score.\ Score\ 21\ points\ first\ \n\ will\ be\ the\ final\ winner.\ SO,\ GAME\ ON\!\n\ Game\ world\ is\ basically\ setting\ up\ all\ the\ actor\ classes\ I\ have\ created.\ It\ inclueds\ the\ most\ methods\ such\ as\ initializes\ \n\ each\ Actor\ class,\ sets\ their\ coordinates,\ and\ increase\ the\ score\ system.\ \n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.11.23\n
 comment1.params=
 comment1.target=Game()
 comment10.params=X\ Y

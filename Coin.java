@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Coin here.
+ * Increase the score of the tank who touches the coin
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2020.12.18
  */
 public class Coin extends Actor
 {
@@ -16,11 +16,6 @@ public class Coin extends Actor
     public Coin()
     {
        
-    }
-    public void act() 
-    {
-  
-    
     }
         
 }

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EndGame here.
+ * Show the score of each player and reveal the winner
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2021.1.7
  */
 public class EndGame extends World
 {

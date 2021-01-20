@@ -1,7 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 /**
- * Write a description of class Music here.
+ * Play background music.
+ * Stop the music by pressing the button and turn it on by pressing it one more time
  * 
  * @author Steven Zhu
  * @version 2020.12.23

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BulletSymbol here.
+ * Show how many bullets remain for each player
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2020.12.19
  */
 public class BulletSymbol extends Actor
 {

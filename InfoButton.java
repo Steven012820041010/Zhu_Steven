@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class InfoButton here.
+ * Switch to the Introduction world after press the key button
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2021.1.7
  */
 public class InfoButton extends Button
 {

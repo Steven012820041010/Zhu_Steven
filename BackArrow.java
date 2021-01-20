@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BackArrow here.
+ * Return to the TitlePage after press the BackArrow button
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2020.12.20
  */
 public class BackArrow extends Button
 {
     /**
-     * Return to the TitlePage after pressing the BackArrow button
+     * 
      */
     
     public BackArrow()

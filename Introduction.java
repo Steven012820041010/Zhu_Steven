@@ -1,18 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Introduction here.
+ * Explain the operations and the rules of the game 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2020.12.23
  */
 public class Introduction extends World
 {
 
-    /**
-     * Constructor for objects of class Introduction.
-     * 
-     */
     GreenfootImage player1 = new GreenfootImage("TankModel.png");
     GreenfootImage player2 = new GreenfootImage("Tank2Model.png");
     
@@ -20,6 +16,12 @@ public class Introduction extends World
     
     Label back;
     
+    /**
+     * Explain the operations and the rules of the game 
+     * 
+     * @author Steven Zhu
+     * @version 2020.12.23
+     */
     public Introduction()
     {     
         // Create a new world with 1000x668 cells with a cell size of 1x1 pixels.

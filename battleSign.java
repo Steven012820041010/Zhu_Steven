@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class battleSign here.
+ * Give players a little buffer or break after start a new game. (Show up after ReadySign) - inherentes from Sign
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2021.1.11
  */
 public class BattleSign extends Sign
 {

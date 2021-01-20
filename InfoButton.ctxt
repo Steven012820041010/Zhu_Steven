@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=InfoButton
-comment0.text=\n\ Write\ a\ description\ of\ class\ InfoButton\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Switch\ to\ the\ Introduction\ world\ after\ press\ the\ key\ button\n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2021.1.7\n
 comment1.params=
 comment1.target=InfoButton()
 comment1.text=\n\ Act\ -\ do\ whatever\ the\ InfoButton\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n

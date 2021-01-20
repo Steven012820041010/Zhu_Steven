@@ -2,8 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList.*;
 import java.util.*;
 /**
- * Tank Battle is a two-players game
- * is basically setting up all the actor classes I have created. It inclueds the most methods I used in 
+ * Tank Battle is a two-players game. Touch coin and shoot down the opponent's tank can both score. Score 21 points first 
+ * will be the final winner. SO, GAME ON!
+ * Game world is basically setting up all the actor classes I have created. It inclueds the most methods such as initializes 
+ * each Actor class, sets their coordinates, and increase the score system. 
  * 
  * @author Steven Zhu
  * @version 2020.11.23

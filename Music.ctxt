@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Music
-comment0.text=\n\ Write\ a\ description\ of\ class\ Music\ here.\n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.12.23\n
+comment0.text=\n\ Play\ background\ music.\n\ Stop\ the\ music\ by\ pressing\ the\ button\ and\ turn\ it\ on\ by\ pressing\ it\ one\ more\ time\n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.12.23\n
 comment1.params=
 comment1.target=Music()
 comment2.params=

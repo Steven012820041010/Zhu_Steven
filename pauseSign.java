@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class pauseSign here.
+ * Pause the game while pressing "P" and press "R" to resume - inherentes from Sign
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2021.1.11
  */
 public class PauseSign extends Sign
 {
@@ -16,8 +16,4 @@ public class PauseSign extends Sign
     {
         
     }
-    public void act() 
-    {
-        // Add your action code here.
-    }    
 }

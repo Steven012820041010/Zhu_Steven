@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Introduction here.
+ * Grab the user's attention.
+ * Present as the main page, including the start, music and key button
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2020.12.30
  */
 public class TitlePage extends World
 {

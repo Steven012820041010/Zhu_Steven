@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Continue
-comment0.text=\n\ Write\ a\ description\ of\ class\ Continue\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Return\ to\ the\ TitlePage\ after\ pressing\ the\ Continue\ button\n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2021.1.7\n
 comment1.params=
 comment1.target=Continue()
-comment1.text=\n\ Return\ to\ the\ TitlePage\ after\ pressing\ the\ Continue\ button\n
+comment1.text=\n\ \n
 comment2.params=
 comment2.target=void\ act()
 numComments=3

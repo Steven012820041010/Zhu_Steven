@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Wall here.
+ * Block the tank to move and make bullet to bounce
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2020.12.31
  */
 public class Wall extends Actor
 {
@@ -17,8 +17,4 @@ public class Wall extends Actor
     {
         
     }
-    public void act() 
-    {
-       
-    }    
 }
