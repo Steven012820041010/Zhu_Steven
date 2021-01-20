@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Game
-comment0.text=\n\ Game\ world\ is\ basically\ setting\ up\ all\ the\ actor\ classes\ I\ have\ created.\ It\ inclueds\ the\ most\ methods\ I\ used\ in\ \n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.11.23\n
+comment0.text=\n\ Tank\ Battle\ is\ a\ two-players\ game\n\ is\ basically\ setting\ up\ all\ the\ actor\ classes\ I\ have\ created.\ It\ inclueds\ the\ most\ methods\ I\ used\ in\ \n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.11.23\n
 comment1.params=
 comment1.target=Game()
 comment10.params=X\ Y
@@ -26,7 +26,7 @@ comment16.target=void\ secondTankIncreaseScore(int,\ int)
 comment16.text=\ \n\ Second\ Tank\ increases\ score\ \n
 comment17.params=
 comment17.target=void\ createCoin()
-comment17.text=\ Create\ coin\ randomly\ in\ Game\ \n
+comment17.text=\ \n\ Create\ coin\ randomly\ in\ Game\ \n
 comment18.params=
 comment18.target=void\ respawnTime()
 comment18.text=\ Count\ the\ time\ after\ a\ tank\ has\ been\ shoot\ \n

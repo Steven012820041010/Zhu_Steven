@@ -2,7 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList.*;
 import java.util.*;
 /**
- * Game world is basically setting up all the actor classes I have created. It inclueds the most methods I used in 
+ * Tank Battle is a two-players game
+ * is basically setting up all the actor classes I have created. It inclueds the most methods I used in 
  * 
  * @author Steven Zhu
  * @version 2020.11.23
@@ -297,7 +298,8 @@ public class Game extends World
         scoreLabel2.setValue(score2);
     }
      
-    /** Create coin randomly in Game 
+    /** 
+     * Create coin randomly in Game 
      */
     public void createCoin()
     {
