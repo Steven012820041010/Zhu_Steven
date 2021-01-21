@@ -8,10 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bullet extends Actor
 {
-    /**
-     * Constructor for objects of class Introduction.
-     * 
-     */
     Game world;
 
     int numTouchTank; 
@@ -22,7 +18,11 @@ public class Bullet extends Actor
     
     SimpleTimer timer = new SimpleTimer();
     GreenfootSound shootingSound  = new GreenfootSound("GunShotSound0.mp3");
-    
+     
+    /**
+     * Constructor for objects of class Bullet.
+     * 
+     */
     public Bullet ()
     {
         timer.mark();

@@ -1,23 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Sign here.
+ * Include all the signs that need to use in the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2021.1.6
  */
 public class Sign extends Actor
 {
     /**
-     * Act - do whatever the Sign wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor for objects of class Sign.
      */
     public Sign()
     {
         
     }
-    public void act() 
-    {
-        // Add your action code here.
-    }    
 }

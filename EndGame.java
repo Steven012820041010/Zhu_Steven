@@ -23,6 +23,11 @@ public class EndGame extends World
     GreenfootImage first = new GreenfootImage("First Win.png");
     GreenfootImage second = new GreenfootImage("Second Win.png");
     
+    
+    /**
+     * Constructor for objects of class EndGame.
+     * 
+     */
     public EndGame(boolean firstOrSecond)
     {    
         // Create a new world with 1000x748 cells with a cell size of 1x1 pixels.
@@ -34,7 +39,9 @@ public class EndGame extends World
         
     }
     
-    //Set continue button 
+    /**
+     * Set the continue button 
+     */
     public void setConImage()
     {
         if(firstOrSecond)

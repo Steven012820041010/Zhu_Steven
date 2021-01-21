@@ -7,12 +7,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version 2021.1.6
  */
 public class StartButton extends Button
-{
-    /**
-     * Act - do whatever the StartButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+{  
     GifImage gifImage = new GifImage("tenor.gif");
+   
+    /**
+     * Constructor for objects of class StartButton.
+     */
+    public StartButton()
+    {
+        
+    }
     
     public void act() 
     {

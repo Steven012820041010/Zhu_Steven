@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Tank
-comment0.text=\n\ Write\ a\ description\ of\ class\ TankBattle\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Set\ the\ tank\ image\ and\ control\ the\ tank\ to\ move\ and\ shoot\n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.11.24\n
 comment1.params=firstOrSecond
 comment1.target=Tank(boolean)
-comment1.text=\n\ Act\ -\ do\ whatever\ the\ TankBattle\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Tank.\n
 comment10.params=
 comment10.target=void\ moveTank()
 comment10.text=\n\ Use\ arrow\ keys\ to\ control\ the\ first\ tank\ and\ use\ "w",\ "a",\ "s",\ "d"\ to\ control\ the\ second\ tank\n
@@ -12,11 +12,13 @@ comment11.target=void\ moveForwardTouchWall()
 comment11.text=\n\ Move\ backward\ if\ the\ tank\ moves\ forward\ and\ touches\ the\ wall\ \ \n
 comment12.params=
 comment12.target=void\ moveBackwardTouchWall()
+comment12.text=\n\ Move\ forward\ if\ the\ tank\ moves\ backward\ and\ touches\ the\ wall\ \ \n
 comment13.params=bullet
 comment13.target=void\ setBulletColor(Bullet)
 comment13.text=\n\ Set\ bullet\ color\ based\ on\ the\ boolean\ redOrGreen\n
 comment14.params=
 comment14.target=void\ shoot()
+comment14.text=\n\ Shoot\ the\ bullet\ from\ the\ coordinates\ of\ the\ tank\n
 comment2.params=
 comment2.target=void\ setTankImage()
 comment2.text=\n\ Set\ tank\ image\ to\ red\ or\ green\ based\ on\ the\ boolean\ redOrGreen\n

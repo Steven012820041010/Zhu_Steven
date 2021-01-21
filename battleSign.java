@@ -9,15 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class BattleSign extends Sign
 {
     /**
-     * Act - do whatever the battleSign wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor for objects of class BattleSign.
      */
     public BattleSign()
     {
         
     }
-    public void act() 
-    {
-        // Add your action code here.
-    }    
 }

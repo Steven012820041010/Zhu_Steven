@@ -9,9 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class BackArrow extends Button
 {
     /**
+     * Constructor for objects of class BackArrow.
      * 
      */
-    
     public BackArrow()
     {
         

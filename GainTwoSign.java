@@ -1,16 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class gainTwoSign here.
+ * Show the plus two sign if tank scores 2 points
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2021.1.7
  */
 public class GainTwoSign extends Sign
 {
     /**
-     * Act - do whatever the gainTwoSign wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor for objects of class GainTwoSign.
      */
     public void act() 
     {

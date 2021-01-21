@@ -9,13 +9,13 @@ import java.util.*;
  */
 public class Music extends Button
 {
-    /**
-     * Act - do whatever the Music wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     static GreenfootSound backgroundMusic = new GreenfootSound("All Decked Out Tonight.mp3"); //Keep the old song play whenever the world is changing and won't create a new song
     GreenfootImage[] soundImage = new GreenfootImage[2]; //Stores "on" and "off" of sound figures
     static int currIndex = 1; //Record the index of the sound figure after changing the world in case the sound image is matched after return to the TitlePage world
+    /**
+     * Constructor for objects of class Music.
+     * 
+     */
     public Music()
     {
         initMusicFigure();

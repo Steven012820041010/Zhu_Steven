@@ -3,6 +3,7 @@ comment0.target=Music
 comment0.text=\n\ Play\ background\ music.\n\ Stop\ the\ music\ by\ pressing\ the\ button\ and\ turn\ it\ on\ by\ pressing\ it\ one\ more\ time\n\ \n\ @author\ Steven\ Zhu\n\ @version\ 2020.12.23\n
 comment1.params=
 comment1.target=Music()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Music.\n\ \n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

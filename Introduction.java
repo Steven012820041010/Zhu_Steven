@@ -16,11 +16,10 @@ public class Introduction extends World
     
     Label back;
     
+    
     /**
-     * Explain the operations and the rules of the game 
+     * Constructor for objects of class Introduction.
      * 
-     * @author Steven Zhu
-     * @version 2020.12.23
      */
     public Introduction()
     {     

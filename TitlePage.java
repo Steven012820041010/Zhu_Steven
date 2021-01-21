@@ -9,11 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TitlePage extends World
 {
-    
-    /**
-     * Constructor for objects of class Introduction.
-     * 
-     */
+     
     SimpleTimer time = new SimpleTimer();
     
     public static Music soundFigure; //
@@ -29,6 +25,10 @@ public class TitlePage extends World
     Label[] startButton;
     Label[] gameInfo;
     
+    /**
+     * Constructor for objects of class TitlePage.
+     * 
+     */
     public TitlePage()
     {    
         // Create a new world with 1000x800 cells with a cell size of 1x1 pixels.

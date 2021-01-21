@@ -1,16 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TankBattle here.
+ * Set the tank image and control the tank to move and shoot
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Steven Zhu
+ * @version 2020.11.24
  */
 public class Tank extends Actor
 {
     SimpleTimer timer = new SimpleTimer();
     Game world;
-    private final int MAX_COOLDOWN = 40; //The time that needs to wait before next shooting
+    private final int MAX_COOLDOWN = 30; //The time that needs to wait before next shooting
     private final int MAX_BULLETS = 8; //Maximum numbers of bullets can store
     
     private int speed; //Speed of the tank
@@ -23,8 +23,7 @@ public class Tank extends Actor
     public boolean redOrGreen;
 
     /**
-     * Act - do whatever the TankBattle wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor for objects of class Tank.
      */
     public Tank(boolean firstOrSecond)
     {
@@ -226,6 +225,9 @@ public class Tank extends Actor
         
     }
     
+    /**
+     * Move forward if the tank moves backward and touches the wall  
+     */
     public void moveBackwardTouchWall()
     {
        world = (Game)getWorld();
@@ -254,7 +256,9 @@ public class Tank extends Actor
         }
     }
 
-    
+    /**
+     * Shoot the bullet from the coordinates of the tank
+     */
     public void shoot()
     {
         world = (Game)getWorld();

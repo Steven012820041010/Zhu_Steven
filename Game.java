@@ -13,10 +13,6 @@ import java.util.*;
 public class Game extends World
 {
     
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
     SimpleTimer pointTimer = new SimpleTimer(); //Increase score
     SimpleTimer respawnTimer = new SimpleTimer(); //Check the respawn time
     
@@ -45,6 +41,10 @@ public class Game extends World
     Wall[] wall;
     Coin coin;
     
+    /**
+     * Constructor for objects of class MyWorld.
+     * 
+     */
     public Game()
     {    
         // Create a new world with 1200x800 cells with a cell size of 1x1 pixels.
@@ -105,7 +105,7 @@ public class Game extends World
             {
                 waitingSign[i].setFillColor(greenfoot.Color.RED);
                 addObject(waitingSign[i],600,400);
-                Greenfoot.delay(15);
+                Greenfoot.delay(40);
                 removeObject(waitingSign[i]);
             }
         }
